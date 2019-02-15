@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/player_fighter_plus"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="55dp"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_engineer_plus" />
+
+    <Button
+        android:id="@+id/player_engineer_plus"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="55dp"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_trader_plus" />
+
+    <Button
+        android:id="@+id/player_trader_plus"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="55dp"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_pilot_plus" />
+
+    <TextView
+        android:id="@+id/player_config_name"
+        android:layout_width="73dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="10dp"
+        android:text="Name"
+        app:layout_constraintEnd_toStartOf="@+id/player_name_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/player_name_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="65dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/player_skillTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:text="Skills"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_config_name" />
+
+    <Button
+        android:id="@+id/player_pilot_minus"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="10dp"
+        android:text="-"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_skillTag" />
+
+    <Button
+        android:id="@+id/player_trader_minus"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="15dp"
+        android:text="-"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_pilot_minus" />
+
+    <Button
+        android:id="@+id/player_engineer_minus"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="15dp"
+        android:text="-"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_trader_minus" />
+
+    <Button
+        android:id="@+id/player_fighter_minus"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="15dp"
+        android:text="-"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_engineer_minus" />
+
+    <Button
+        android:id="@+id/player_pilot_plus"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="52dp"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_skillTag" />
+
+    <Spinner
+        android:id="@+id/spinner_difficulty_config"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_difficulty_tag" />
+
+    <TextView
+        android:id="@+id/player_difficulty_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:text="Difficulty"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_fighter_minus" />
+
+    <Button
+        android:id="@+id/player_startGame"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="73dp"
+        android:text="Ready to Begin Your Adevnture?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_difficulty_config" />
+
+    <TextView
+        android:id="@+id/player_total_skill_points"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="219dp"
+        android:text="16 Points Left"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/player_skillTag"
+        app:layout_constraintTop_toBottomOf="@+id/player_config_name" />
+
+    <TextView
+        android:id="@+id/player_display_pilot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="100dp"
+        android:text="0"
+        app:layout_constraintEnd_toStartOf="@+id/player_pilot_plus"
+        app:layout_constraintStart_toEndOf="@+id/player_pilot_minus"
+        app:layout_constraintTop_toBottomOf="@+id/player_total_skill_points" />
+
+    <TextView
+        android:id="@+id/player_display_trader"
+        android:layout_width="7dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="100dp"
+        android:text="0"
+        app:layout_constraintEnd_toStartOf="@+id/player_trader_plus"
+        app:layout_constraintStart_toEndOf="@+id/player_trader_minus"
+        app:layout_constraintTop_toBottomOf="@+id/player_display_pilot" />
+
+    <TextView
+        android:id="@+id/player_display_engineer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="99dp"
+        android:text="0"
+        app:layout_constraintEnd_toStartOf="@+id/player_engineer_plus"
+        app:layout_constraintStart_toEndOf="@+id/player_engineer_minus"
+        app:layout_constraintTop_toBottomOf="@+id/player_display_trader" />
+
+    <TextView
+        android:id="@+id/player_display_fighter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="100dp"
+        android:text="0"
+        app:layout_constraintEnd_toStartOf="@+id/player_fighter_plus"
+        app:layout_constraintStart_toEndOf="@+id/player_fighter_minus"
+        app:layout_constraintTop_toBottomOf="@+id/player_display_engineer" />
+
+</android.support.constraint.ConstraintLayout>
