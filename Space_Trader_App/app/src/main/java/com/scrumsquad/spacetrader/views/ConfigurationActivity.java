@@ -84,12 +84,16 @@ public class ConfigurationActivity extends AppCompatActivity{
             int pressedId = v.getId();
             // find which button was pressed
             if (pressedId == R.id.player_pilot_plus) {
+                pilotSkill.updateLevel(pilotSkill.getLevel() + 1);
                 updatePilotLabel();
             } else if (pressedId == R.id.player_trader_plus) {
+                traderSkill.updateLevel(traderSkill.getLevel() + 1);
                 updateTraderLabel();
             } else if (pressedId == R.id.player_engineer_plus) {
+                engineerSkill.updateLevel(engineerSkill.getLevel() + 1);
                 updateEngineerLabel();
             } else if (pressedId == R.id.player_fighter_plus) {
+                fighterSkill.updateLevel(fighterSkill.getLevel() + 1);
                 updateFighterLabel();
             }
         }
@@ -109,25 +113,21 @@ public class ConfigurationActivity extends AppCompatActivity{
     }
 
     public void updatePilotLabel() {
-        pilotSkill.updateLevel(pilotSkill.getLevel() + 1);
         pilotLabel = (TextView) findViewById(R.id.player_display_pilot);
         pilotLabel.setText(pilotSkill.getLevel() + "");
     }
 
     public void updateTraderLabel() {
-        traderSkill.updateLevel(traderSkill.getLevel() + 1);
         traderLabel = (TextView) findViewById(R.id.player_display_trader);
         traderLabel.setText(traderSkill.getLevel() + "");
     }
 
     public void updateEngineerLabel() {
-        engineerSkill.updateLevel(engineerSkill.getLevel() + 1);
         engineerLabel = (TextView) findViewById(R.id.player_display_engineer);
         engineerLabel.setText(engineerSkill.getLevel() + "");
     }
 
     public void updateFighterLabel() {
-        fighterSkill.updateLevel(fighterSkill.getLevel() + 1);
         fighterLabel = (TextView) findViewById(R.id.player_display_fighter);
         fighterLabel.setText(fighterSkill.getLevel() + "");
     }
