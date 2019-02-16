@@ -1,8 +1,11 @@
-package com.scrumsquad.spacetrader;
+package com.scrumsquad.spacetrader.views;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.scrumsquad.spacetrader.R;
+import com.scrumsquad.spacetrader.views.TitleActivity;
 
 public class MainActivity extends AppCompatActivity {
 

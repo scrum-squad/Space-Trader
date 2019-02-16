@@ -1,4 +1,4 @@
-package com.scrumsquad.spacetrader;
+package com.scrumsquad.spacetrader.model;
 
 public enum Skills {
     Pilot,
