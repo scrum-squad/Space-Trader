@@ -100,13 +100,12 @@ public class ConfigurationActivity extends AppCompatActivity{
         plusButtons = new Button[NUM_PLUS_BUTTONS];
         // I could add the buttons a different way but this is easiest for me to visualize
         plusButtons[0] = findViewById(R.id.player_pilot_plus);
-        plusButtons[0].setOnClickListener(new ButtonClickListener());
         plusButtons[1] = findViewById(R.id.player_trader_plus);
-        plusButtons[1].setOnClickListener(new ButtonClickListener());
         plusButtons[2] = findViewById(R.id.player_engineer_plus);
-        plusButtons[2].setOnClickListener(new ButtonClickListener());
         plusButtons[3] = findViewById(R.id.player_fighter_plus);
-        plusButtons[3].setOnClickListener(new ButtonClickListener());
+        for (int i = 0; i < plusButtons.length; i++) {
+            plusButtons[i].setOnClickListener(new ButtonClickListener());
+        }
     }
 
     public void updatePilotLabel() {
