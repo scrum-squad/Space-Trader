@@ -7,6 +7,8 @@ assignees: ''
 
 ---
 
+**Quick Summary**
+
 **User Story**
 
 **Acceptance Criteria**
