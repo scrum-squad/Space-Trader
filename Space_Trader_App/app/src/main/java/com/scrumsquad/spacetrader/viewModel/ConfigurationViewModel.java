@@ -20,6 +20,10 @@ public class ConfigurationViewModel extends AndroidViewModel{
     public void incrementSkill(Skills skill){
         skill.updateLevel(skill.getLevel() + 1);
     }
+    public void decrementSkill(Skills skill) {
+        skill.updateLevel(skill.getLevel() - 1);
+    }
+
 
 
 }
