@@ -4,6 +4,7 @@ public class Player {
     private String name;
     private int credits;
     private Ships ship;
+    private int skillPoints;
 
     public Player(String name, int credits, Ships ship) {
         this.name = name;

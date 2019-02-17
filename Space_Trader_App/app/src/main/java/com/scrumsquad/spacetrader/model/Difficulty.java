@@ -3,7 +3,7 @@ package com.scrumsquad.spacetrader.model;
 public enum Difficulty {
     Beginner ("Beginner"),
     Easy ("Easy"),
-    Normal ("Norma"),
+    Normal ("Normal"),
     Hard ("Hard"),
     Impossible ("Impossible");
 
