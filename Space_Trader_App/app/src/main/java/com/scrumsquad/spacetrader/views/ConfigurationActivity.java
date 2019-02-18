@@ -70,16 +70,6 @@ public class ConfigurationActivity extends AppCompatActivity{
         startGame.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 viewModel.generateCharacter();
-                for (Skills skill : Skills.values()) {
-                    String id = "player_display_" + skill.name().toLowerCase();
-                    int resID = getResources().getIdentifier(id, "id", getPackageName());
-                    skill.updateLevel(Integer.parseInt(((TextView) findViewById(resID)).getText().toString()));
-                }
-                player = new Player(playerName.getText().toString(), STARTING_CREDITS, STARTING_SHIP);
-                System.out.println("Name: " + playerName.getText().toString() +
-                        " | Difficulty: " + ((Difficulty) difSpinner.getSelectedItem()).getLevel() +
-                        " | Skills: " + Skills.Engineer.getLevel());
-                //code here to save player and difficulty
             }
         });
     }
@@ -90,7 +80,9 @@ public class ConfigurationActivity extends AppCompatActivity{
             int pressedId = v.getId();
             //I think that this should be changed to something less hardcoded but idk how
             // find which button was pressed
+            System.out.println(pressedId);
             if (pressedId == R.id.player_pilot_plus) {
+                System.out.println("Inc Pilot" + Skills.Pilot.name());
                 viewModel.incrementSkill(Skills.Pilot);
             } else if (pressedId == R.id.player_trader_plus) {
                 viewModel.incrementSkill(Skills.Trader);
