@@ -25,16 +25,11 @@ public class ConfigurationActivity extends AppCompatActivity{
 
     private ConfigurationViewModel viewModel;
 
-    private final int STARTING_CREDITS = 1000;
-    private final Ships STARTING_SHIP = Ships.GNAT;
-    private final int SKILL_POINTS = 16;
+
 
     private String name;
     private Player player;
     private Difficulty difLevel;
-    // This allows us to add more skills more easily
-    private Skills[] playerSkills = Skills.values();
-    private int skillPointsUsed;
 
     private TextView remainingSkillPoints;
     private TextView pilotLabel;
@@ -74,9 +69,7 @@ public class ConfigurationActivity extends AppCompatActivity{
         startGame.setClickable(false);
         startGame.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                if (skillPointsUsed != SKILL_POINTS) {
-                    
-                }
+                viewModel.generateCharacter();
                 for (Skills skill : Skills.values()) {
                     String id = "player_display_" + skill.name().toLowerCase();
                     int resID = getResources().getIdentifier(id, "id", getPackageName());
@@ -98,22 +91,22 @@ public class ConfigurationActivity extends AppCompatActivity{
             //I think that this should be changed to something less hardcoded but idk how
             // find which button was pressed
             if (pressedId == R.id.player_pilot_plus) {
-                incrementSkill(Skills.Pilot);
+                viewModel.incrementSkill(Skills.Pilot);
             } else if (pressedId == R.id.player_trader_plus) {
-                incrementSkill(Skills.Trader);
+                viewModel.incrementSkill(Skills.Trader);
             } else if (pressedId == R.id.player_engineer_plus) {
-                incrementSkill(Skills.Engineer);
+                viewModel.incrementSkill(Skills.Engineer);
             } else if (pressedId == R.id.player_fighter_plus) {
-                incrementSkill(Skills.Fighter);
+                viewModel.incrementSkill(Skills.Fighter);
             }
             if (pressedId == R.id.player_pilot_minus) {
-                decrementSkill(Skills.Pilot);
+                viewModel.decrementSkill(Skills.Pilot);
             } else if (pressedId == R.id.player_trader_minus) {
-                decrementSkill(Skills.Trader);
+                viewModel.decrementSkill(Skills.Trader);
             } else if (pressedId == R.id.player_engineer_minus) {
-                decrementSkill(Skills.Engineer);
+                viewModel.decrementSkill(Skills.Engineer);
             } else if (pressedId == R.id.player_fighter_minus) {
-                decrementSkill(Skills.Fighter);
+                viewModel.decrementSkill(Skills.Fighter);
             }
             updateSkillLabels();
             updateRemainingSkillPoints();
@@ -151,61 +144,34 @@ public class ConfigurationActivity extends AppCompatActivity{
         traderLabel = (TextView) findViewById(R.id.player_display_trader);
         engineerLabel = (TextView) findViewById(R.id.player_display_engineer);
         fighterLabel = (TextView) findViewById(R.id.player_display_fighter);
-        pilotLabel.setText(playerSkills[0].getLevel() + "");
-        traderLabel.setText(playerSkills[2].getLevel() + "");
-        engineerLabel.setText(playerSkills[3].getLevel() + "");
-        fighterLabel.setText(playerSkills[1].getLevel() + "");
+        pilotLabel.setText(viewModel.getSkillLevel(0) + "");
+        traderLabel.setText(viewModel.getSkillLevel(2) + "");
+        engineerLabel.setText(viewModel.getSkillLevel(3) + "");
+        fighterLabel.setText(viewModel.getSkillLevel(1) + "");
+        disableMinus();
+        disablePlus();
+    }
+    private void disableMinus() {
+        minusButtons[0].setClickable(viewModel.getSkillLevel(0) > 0);
+        minusButtons[3].setClickable(viewModel.getSkillLevel(1) > 0);
+        minusButtons[1].setClickable(viewModel.getSkillLevel(2) > 0);
+        minusButtons[2].setClickable(viewModel.getSkillLevel(3) > 0);
+    }
+
+    private void disablePlus() {
+        for (Button button: plusButtons) {
+            button.setClickable(viewModel.remainingSkillPoints() > 0);
+        }
     }
     private void updateRemainingSkillPoints() {
         remainingSkillPoints = (TextView) findViewById(R.id.player_total_skill_points);
-        int usedSkills = 0;
-        for (Skills skill: playerSkills) {
-            usedSkills += skill.getLevel();
-        }
-        this.skillPointsUsed = usedSkills;
-        // Calculates the number of allocated skill points
-        // I think this needs to be visible to more of the app in order to set the
-        // start journey button based on it but here is what I am thinking
-        for (Button minus : minusButtons) {
-                minus.setClickable(usedSkills > 0);
-            }
-
-
-        remainingSkillPoints.setText(SKILL_POINTS - usedSkills + " Points Left");
-        if (SKILL_POINTS - usedSkills == 0) {
+        int skillPointsLeft = viewModel.remainingSkillPoints();
+        remainingSkillPoints.setText(skillPointsLeft + " Points Left");
+        if (skillPointsLeft == 0) {
             startGame.setClickable(true);
-            for (int i = 0; i < plusButtons.length; i++) {
-                plusButtons[i].setClickable(false);
-            }
+            disablePlus();
         }
-
-    }
-    private void incrementSkill(Skills skill){
-        skill.updateLevel(skill.getLevel() + 1);
     }
 
-    private void decrementSkill(Skills skill) {
-        skill.updateLevel(skill.getLevel() - 1);
-    }
-
-//    public void updatePilotLabel() {
-//        pilotLabel = (TextView) findViewById(R.id.player_display_pilot);
-//        pilotLabel.setText(pilotSkill.getLevel() + "");
-//    }
-//
-//    public void updateTraderLabel() {
-//        traderLabel = (TextView) findViewById(R.id.player_display_trader);
-//        traderLabel.setText(traderSkill.getLevel() + "");
-//    }
-//
-//    public void updateEngineerLabel() {
-//        engineerLabel = (TextView) findViewById(R.id.player_display_engineer);
-//        engineerLabel.setText(engineerSkill.getLevel() + "");
-//    }
-//
-//    public void updateFighterLabel() {
-//        fighterLabel = (TextView) findViewById(R.id.player_display_fighter);
-//        fighterLabel.setText(fighterSkill.getLevel() + "");
-//    }
 
 }

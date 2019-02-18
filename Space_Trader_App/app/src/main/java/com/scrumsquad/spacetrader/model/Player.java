@@ -4,12 +4,13 @@ public class Player {
     private String name;
     private int credits;
     private Ships ship;
-    private int skillPoints;
+    private Skills[] skills;
 
-    public Player(String name, int credits, Ships ship) {
+    public Player(String name, int credits, Ships ship, Skills[] skill) {
         this.name = name;
         this.credits = credits;
         this.ship = ship;
+        this.skills = skill;
     }
 
     public int getCredits() {
