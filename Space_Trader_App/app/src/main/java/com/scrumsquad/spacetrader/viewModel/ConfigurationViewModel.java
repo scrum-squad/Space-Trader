@@ -11,6 +11,8 @@ import com.scrumsquad.spacetrader.model.Player;
 import com.scrumsquad.spacetrader.model.Ships;
 import com.scrumsquad.spacetrader.model.Skills;
 
+import java.sql.SQLOutput;
+
 public class ConfigurationViewModel extends ViewModel {
 
 
@@ -50,8 +52,17 @@ public class ConfigurationViewModel extends ViewModel {
     public void generateCharacter() {
         Player player1 = new Player(playerName, STARTING_CREDITS, STARTING_SHIP, playerSkills);
         currentGame = new Game(player1, diff);
+        generatorPrint();
+    }
 
-
+    public void generatorPrint() {
+        System.out.println("Player Name: " + playerName);
+        System.out.println("Credits: " + STARTING_CREDITS);
+        System.out.println("Ship: " + STARTING_SHIP.getName());
+        for (Skills skill: playerSkills) {
+            System.out.println(skill.name() + ": " + skill.getLevel());
+        }
+        System.out.println("Difficulty: " + diff.name());
     }
 
     public int remainingSkillPoints() {
