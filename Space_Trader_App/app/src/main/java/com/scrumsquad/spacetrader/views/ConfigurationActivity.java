@@ -1,5 +1,6 @@
 package com.scrumsquad.spacetrader.views;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.arch.lifecycle.ViewModelProvider;
 
 import com.scrumsquad.spacetrader.R;
 import com.scrumsquad.spacetrader.model.Difficulty;
@@ -24,8 +26,6 @@ import java.util.Map;
 public class ConfigurationActivity extends AppCompatActivity{
 
     private ConfigurationViewModel viewModel;
-
-
 
     private String name;
     private Player player;
@@ -49,9 +49,11 @@ public class ConfigurationActivity extends AppCompatActivity{
     private final int NUM_MINUS_BUTTONS = 4;
 
 
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuration);
+        viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
         // creates array of plus buttons
         createButtonArray();
 
@@ -65,10 +67,13 @@ public class ConfigurationActivity extends AppCompatActivity{
                 Arrays.asList(Difficulty.values()));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difSpinner.setAdapter(adapter);
+        difSpinner.setSelection(viewModel.getDiff().ordinal());
 
         startGame.setClickable(false);
         startGame.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                viewModel.setName(playerName.getText().toString());
+                viewModel.setDiff((Difficulty) difSpinner.getSelectedItem());
                 viewModel.generateCharacter();
             }
         });

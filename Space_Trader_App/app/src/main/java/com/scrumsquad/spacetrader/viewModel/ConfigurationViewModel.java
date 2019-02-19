@@ -2,6 +2,7 @@ package com.scrumsquad.spacetrader.viewModel;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.ViewModel;
 import android.support.annotation.NonNull;
 
 import com.scrumsquad.spacetrader.model.Difficulty;
@@ -10,7 +11,7 @@ import com.scrumsquad.spacetrader.model.Player;
 import com.scrumsquad.spacetrader.model.Ships;
 import com.scrumsquad.spacetrader.model.Skills;
 
-public class ConfigurationViewModel extends AndroidViewModel{
+public class ConfigurationViewModel extends ViewModel {
 
 
     private final int STARTING_CREDITS = 1000;
@@ -24,14 +25,18 @@ public class ConfigurationViewModel extends AndroidViewModel{
     private Difficulty diff = Difficulty.Normal;
 
 
+
+
+
+
     /**
      * This should generate the view model of our config screen
      *
      * @param application
      */
-    public ConfigurationViewModel(@NonNull Application application) {
-        super(application);
-    }
+//    public ConfigurationViewModel(@NonNull Application application) {
+//        super(application);
+//    }
 
     public void incrementSkill(Skills skill){
         int ind = skill.ordinal();
@@ -66,6 +71,13 @@ public class ConfigurationViewModel extends AndroidViewModel{
 
     public Difficulty getDiff() {
         return this.diff;
+    }
+
+    public void setName(String name) {
+        this.playerName = name;
+    }
+    public String getName() {
+        return this.playerName;
     }
 
 
