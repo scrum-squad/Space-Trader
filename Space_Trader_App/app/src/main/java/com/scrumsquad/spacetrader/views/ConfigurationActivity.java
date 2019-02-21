@@ -1,6 +1,7 @@
 package com.scrumsquad.spacetrader.views;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,19 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.arch.lifecycle.ViewModelProvider;
 
 import com.scrumsquad.spacetrader.R;
 import com.scrumsquad.spacetrader.model.Difficulty;
 import com.scrumsquad.spacetrader.model.Player;
-import com.scrumsquad.spacetrader.model.Ships;
 import com.scrumsquad.spacetrader.model.Skills;
 import com.scrumsquad.spacetrader.viewModel.ConfigurationViewModel;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ConfigurationActivity extends AppCompatActivity{
 
@@ -48,9 +44,7 @@ public class ConfigurationActivity extends AppCompatActivity{
     private Button[] minusButtons;
     private final int NUM_MINUS_BUTTONS = 4;
 
-
-
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuration);
         viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
@@ -75,6 +69,12 @@ public class ConfigurationActivity extends AppCompatActivity{
                 viewModel.setName(playerName.getText().toString());
                 viewModel.setDiff((Difficulty) difSpinner.getSelectedItem());
                 viewModel.generateCharacter();
+
+                // Generate Universe
+
+                //Post Generation: Opens main game screen
+                Intent swap = new Intent(view.getContext(), GameActivity.class);
+                startActivity(swap);
             }
         });
     }
@@ -169,6 +169,4 @@ public class ConfigurationActivity extends AppCompatActivity{
             disablePlus();
         }
     }
-
-
 }
