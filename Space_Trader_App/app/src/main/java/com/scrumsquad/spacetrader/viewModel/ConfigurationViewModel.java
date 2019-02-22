@@ -51,7 +51,8 @@ public class ConfigurationViewModel extends ViewModel {
 
     public void generateCharacter() {
         Player player1 = new Player(playerName, STARTING_CREDITS, STARTING_SHIP, playerSkills);
-        currentGame = new Game(player1, diff);
+        String[] planets = {"Name", "Name1", "Name2"};
+        currentGame = new Game(player1, diff, planets);
         generatorPrint();
     }
 
