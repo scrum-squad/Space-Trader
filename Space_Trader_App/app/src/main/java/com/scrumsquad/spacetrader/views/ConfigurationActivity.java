@@ -44,6 +44,10 @@ public class ConfigurationActivity extends AppCompatActivity{
     private Button[] minusButtons;
     private final int NUM_MINUS_BUTTONS = 4;
 
+    // these are the key values for passing player data and difficulty data at the end
+    private final String PLAYER_KEY = "Player";
+    private final String DIFFICULTY_KEY = "Difficulty";
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuration);
@@ -68,9 +72,9 @@ public class ConfigurationActivity extends AppCompatActivity{
             public void onClick(View view) {
                 viewModel.setName(playerName.getText().toString());
                 viewModel.setDiff((Difficulty) difSpinner.getSelectedItem());
-                viewModel.generateCharacter();
 
-                // Generate Universe
+                // THIS CREATES THE PLAYER AND THE UNIVERSE
+                viewModel.generateCharacter();
 
                 //Post Generation: Opens main game screen
                 Intent swap = new Intent(view.getContext(), GameActivity.class);

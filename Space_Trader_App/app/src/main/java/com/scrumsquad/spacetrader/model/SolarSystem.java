@@ -4,6 +4,7 @@ public class SolarSystem {
     private int xCord;
     private int yCord;
     private Planet[] planets;
+    private String name;
 
     /**
      * used for only one planet
@@ -14,6 +15,7 @@ public class SolarSystem {
     public SolarSystem(int xCord, int yCord, String planetName) {
         this.xCord = xCord;
         this.yCord = yCord;
+        this.name = planetName;
         String[] planetNames = {planetName};
         makePlanets(planetNames);
     }
@@ -27,6 +29,7 @@ public class SolarSystem {
     public SolarSystem(int xCord, int yCord, String[] planetNames) {
         this.xCord = xCord;
         this.yCord = yCord;
+        this.name = planetNames[0];
         makePlanets(planetNames);
     }
 
@@ -39,5 +42,17 @@ public class SolarSystem {
         for (int i = 0; i < planets.length; i++) {
             planets[i] = new Planet(planetNames[i]);
         }
+    }
+
+    public Planet[] getPlanets() {
+        return planets;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCoordinates() {
+        return "(" + xCord + "," + yCord + ")";
     }
 }

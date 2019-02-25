@@ -51,8 +51,9 @@ public class ConfigurationViewModel extends ViewModel {
 
     public void generateCharacter() {
         Player player1 = new Player(playerName, STARTING_CREDITS, STARTING_SHIP, playerSkills);
-        String[] planets = {"Name", "Name1", "Name2"};
-        currentGame = new Game(player1, diff, planets);
+        String[] planetNames = {"Acamar", "Adahn", "Aldea", "Andevian", "Antedi", "Balosnee", "Baratas", "Brax", "Bretel", "Calondia",
+                "Campor", "Capelle", "Carzon", "Castor", "Cestus", "Cheron", "Courteney", "Daled", "Damast", "Janus", "Japori"};
+        currentGame = new Game(player1, diff, planetNames);
         generatorPrint();
     }
 
@@ -73,6 +74,8 @@ public class ConfigurationViewModel extends ViewModel {
         }
         return SKILL_POINTS - usedSkills;
     }
+
+
     public int getSkillLevel(int ind) {
         return playerSkills[ind].getLevel();
     }
