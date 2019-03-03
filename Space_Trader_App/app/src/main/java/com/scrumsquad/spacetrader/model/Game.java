@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class Game {
     // this is a singleton so here's the only instance
     private static Game game;
+    // other variables
     private Player player;
     private Difficulty diff;
     // hashmap has the solar system coordinates (key) and the system itself (value)
@@ -15,7 +16,7 @@ public class Game {
     private Game(Player player1, Difficulty diff1, String[] solarSystemNames) {
         this.player = player1;
         this.diff = diff1;
-        makeSolarSystems(solarSystemNames);
+        this.makeSolarSystems(solarSystemNames);
     }
 
     // basically just calls the constructor for the instance of Game
@@ -52,6 +53,9 @@ public class Game {
             }
         }
 
+        // assign the first planet created to be our starting planet
+        player.setCurrentPlanet(solarSystems.get(solarSystemNames[0]).getPlanets()[0]);
+
         /*
             FOR NOW WE WILL BE JUST PRINTING OUT THE RESULTS AT THE END OF THIS METHOD
          */
@@ -77,5 +81,13 @@ public class Game {
      */
     public Game getGame() {
         return game;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Difficulty getDiff() {
+        return diff;
     }
 }
