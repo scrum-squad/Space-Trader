@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/market_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:text="Name" />
+
+    <TextView
+        android:id="@+id/market_item_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="20 Cr." />
+
+    <TextView
+        android:id="@+id/market_item_owned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="1" />
+
+    <TextView
+        android:id="@+id/market_item_available"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="10" />
+
+    <EditText
+        android:id="@+id/market_item_amount"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="0" />
+
+    <Button
+        android:id="@+id/market_item_buy"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buy" />
+
+    <Button
+        android:id="@+id/market_item_sell"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sell"
+        android:visibility="visible" />
+</merge>
