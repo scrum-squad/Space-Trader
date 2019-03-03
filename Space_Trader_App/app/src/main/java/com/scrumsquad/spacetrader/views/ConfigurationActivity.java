@@ -79,6 +79,7 @@ public class ConfigurationActivity extends AppCompatActivity{
                 //Post Generation: Opens main game screen
                 Intent swap = new Intent(view.getContext(), GameActivity.class);
                 startActivity(swap);
+
             }
         });
     }

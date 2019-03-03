@@ -3,6 +3,7 @@ package com.scrumsquad.spacetrader.viewModel;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.ViewModel;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import com.scrumsquad.spacetrader.model.Difficulty;
@@ -10,6 +11,7 @@ import com.scrumsquad.spacetrader.model.Game;
 import com.scrumsquad.spacetrader.model.Player;
 import com.scrumsquad.spacetrader.model.Ships;
 import com.scrumsquad.spacetrader.model.Skills;
+import com.scrumsquad.spacetrader.views.GameActivity;
 
 import java.sql.SQLOutput;
 
@@ -53,7 +55,7 @@ public class ConfigurationViewModel extends ViewModel {
         Player player1 = new Player(playerName, STARTING_CREDITS, STARTING_SHIP, playerSkills);
         String[] planetNames = {"Acamar", "Adahn", "Aldea", "Andevian", "Antedi", "Balosnee", "Baratas", "Brax", "Bretel", "Calondia",
                 "Campor", "Capelle", "Carzon", "Castor", "Cestus", "Cheron", "Courteney", "Daled", "Damast", "Janus", "Japori"};
-        currentGame = new Game(player1, diff, planetNames);
+        Game.makeGame(player1, diff, planetNames);
         generatorPrint();
     }
 

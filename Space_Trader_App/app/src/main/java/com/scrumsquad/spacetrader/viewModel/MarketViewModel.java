@@ -14,6 +14,6 @@ import com.scrumsquad.spacetrader.model.Skills;
 import java.sql.SQLOutput;
 
 public class MarketViewModel extends ViewModel {
-
+    
 
 }
