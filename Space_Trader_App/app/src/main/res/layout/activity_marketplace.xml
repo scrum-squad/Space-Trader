@@ -23,21 +23,31 @@
         app:layout_constraintStart_toEndOf="@+id/market_leave_button"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/market_display_funds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Funds Available: 100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.843"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/martketTitle" />
+
     <ScrollView
         android:id="@+id/market_scroll"
         android:layout_width="0dp"
         android:layout_height="530dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/market_display_funds">
+        app:layout_constraintTop_toBottomOf="@+id/market_leave_button">
 
-        <LinearLayout
+        <TableLayout
             android:id="@+id/market_display"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:layout_height="wrap_content" />
     </ScrollView>
 
     <Button
@@ -50,16 +60,5 @@
         android:visibility="visible"
         app:layout_constraintBaseline_toBaselineOf="@+id/martketTitle"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/market_display_funds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Funds Available: 100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/martketTitle" />
 
 </android.support.constraint.ConstraintLayout>

@@ -26,6 +26,23 @@ public class ItemView extends LinearLayout {
     public ItemView(Context context) {
         super(context);
         init();
+
+        bBuy.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                System.out.println(name.getText().toString());
+                // ViewModel
+                // Take name, price, and value from amountSelect
+                // Update funds, amountOwn, amountBuyable
+            }
+        });
+
+        bSell.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                // ViewModel
+                // Take name, price, and value from amountSelect
+                // Update funds, amountOwn, amountBuyable
+            }
+        });
     }
 
     //Initializes ItemView
