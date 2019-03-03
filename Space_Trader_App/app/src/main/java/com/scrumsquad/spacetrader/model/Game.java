@@ -79,7 +79,7 @@ public class Game {
      *
      * @return Game
      */
-    public Game getGame() {
+    public static Game getGame() {
         return game;
     }
 
@@ -89,5 +89,9 @@ public class Game {
 
     public Difficulty getDiff() {
         return diff;
+    }
+
+    public Planet getCurrentPlanet() {
+        return player.getCurrentPlanet();
     }
 }
