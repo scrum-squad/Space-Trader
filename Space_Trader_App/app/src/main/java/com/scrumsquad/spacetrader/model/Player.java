@@ -5,6 +5,7 @@ public class Player {
     private int credits;
     private Ships ship;
     private Skills[] skills;
+    private Planet currentPlanet;
 
     public Player(String name, int credits, Ships ship, Skills[] skill) {
         this.name = name;
@@ -23,5 +24,13 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public Planet getCurrentPlanet() {
+        return currentPlanet;
+    }
+
+    public void setCurrentPlanet(Planet planet) {
+        currentPlanet = planet;
     }
 }
