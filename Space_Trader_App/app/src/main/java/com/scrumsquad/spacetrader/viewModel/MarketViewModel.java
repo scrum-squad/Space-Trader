@@ -34,4 +34,15 @@ public class MarketViewModel extends ViewModel {
         return price;
     }
 
+    public int amountOwned(MarketGoodItem item) {
+        int ownCount = 0;
+        for (MarketGoodItem inInv: Game.getGame().getPlayer().getShip().getInventory()) {
+            if (item.equals(inInv)) {
+                // Might throw a NPE might need to switch var positions
+                ownCount++;
+            }
+        }
+        return ownCount;
+    }
+
 }
