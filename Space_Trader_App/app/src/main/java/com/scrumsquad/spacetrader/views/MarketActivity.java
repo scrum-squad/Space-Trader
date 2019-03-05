@@ -1,5 +1,6 @@
 package com.scrumsquad.spacetrader.views;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +15,18 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.scrumsquad.spacetrader.model.Game;
+import com.scrumsquad.spacetrader.model.MarketGoodItem;
+import com.scrumsquad.spacetrader.viewModel.MarketViewModel;
+
 import com.scrumsquad.spacetrader.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MarketActivity extends AppCompatActivity {
+
+    private MarketViewModel viewModel;
 
     private Button leaveMarket;
     private ScrollView scrollView;
@@ -25,6 +35,8 @@ public class MarketActivity extends AppCompatActivity {
     public void onCreate(Bundle instanceSaved) {
         super.onCreate(instanceSaved);
         setContentView(R.layout.activity_marketplace);
+        viewModel = ViewModelProviders.of(this).get(MarketViewModel.class);
+
 
         scrollView = findViewById(R.id.market_scroll);
         marketDisplay = findViewById(R.id.market_display);
@@ -44,7 +56,13 @@ public class MarketActivity extends AppCompatActivity {
 
     public void loadMarket(int limit) {
         //Run through param data structure and add each item
-        for (int i = 0; i < limit; i++) {
+        List<MarketGoodItem> marketInventory = new ArrayList<MarketGoodItem>();
+        for (MarketGoodItem m : MarketGoodItem.values()) {
+            if (Game.getGame().getCurrentPlanet().getTechLevel().getLevel() >= m.getTechLvlMostProduction()){
+                marketInventory.add(m);
+            }
+        }
+        for (MarketGoodItem m : marketInventory) {
             TableRow added = new TableRow(this);
             TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
             added.setLayoutParams(lp);
@@ -52,7 +70,7 @@ public class MarketActivity extends AppCompatActivity {
             //Create new ItemView object
             ItemView item = new ItemView(this.getApplicationContext());
             //Loads data
-            item.load(10);
+            item.load(m, viewModel.calculatePrice(m));
 
             added.addView(item);
             marketDisplay.addView(added);

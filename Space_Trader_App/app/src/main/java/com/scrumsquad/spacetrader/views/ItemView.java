@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 
 import com.scrumsquad.spacetrader.R;
+import com.scrumsquad.spacetrader.model.MarketGoodItem;
 
 public class ItemView extends LinearLayout {
 
@@ -61,9 +62,9 @@ public class ItemView extends LinearLayout {
     }
 
     //This method loads the item view with given good's info
-    public void load(int i) {
-        name.setText("Sample Item");
-        price.setText("" + i);
+    public void load(MarketGoodItem m, int cost) {
+        name.setText(m.toString());
+        price.setText("$" + cost);
     }
 
 }
