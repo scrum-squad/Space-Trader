@@ -70,12 +70,14 @@ public class MarketActivity extends AppCompatActivity {
             //Create new ItemView object
             ItemView item = new ItemView(this.getApplicationContext());
             //Loads data
-            item.load(m, viewModel.calculatePrice(m));
+            System.out.println(viewModel.amountOwned(m));
+            item.load(m, viewModel.calculatePrice(m), viewModel.amountOwned(m));
 
             added.addView(item);
             marketDisplay.addView(added);
         }
     }
+
 
     public void clearMarket() {
         marketDisplay.removeAllViewsInLayout();

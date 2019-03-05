@@ -1,5 +1,6 @@
 package com.scrumsquad.spacetrader.views;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.scrumsquad.spacetrader.R;
 import com.scrumsquad.spacetrader.model.MarketGoodItem;
+import com.scrumsquad.spacetrader.viewModel.MarketViewModel;
 
 public class ItemView extends LinearLayout {
 
@@ -23,6 +25,8 @@ public class ItemView extends LinearLayout {
 
     private Button bBuy;
     private Button bSell;
+
+    private MarketViewModel viewModel;
 
     public ItemView(Context context) {
         super(context);
@@ -62,9 +66,12 @@ public class ItemView extends LinearLayout {
     }
 
     //This method loads the item view with given good's info
-    public void load(MarketGoodItem m, int cost) {
-        name.setText(m.toString());
+    public void load(MarketGoodItem m, int cost, int owned) {
+        String itemName = m.name().toLowerCase();
+        itemName = itemName.substring(0, 1).toUpperCase() + itemName.substring(1);
+        name.setText(itemName);
         price.setText("$" + cost);
+        amountOwn.setText("" + owned);
     }
 
 }
