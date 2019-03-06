@@ -1,5 +1,6 @@
 package com.scrumsquad.spacetrader.views;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.view.View;
 import android.widget.EditText;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 
 import com.scrumsquad.spacetrader.R;
+import com.scrumsquad.spacetrader.model.MarketGoodItem;
+import com.scrumsquad.spacetrader.viewModel.MarketViewModel;
 
 public class ItemView extends LinearLayout {
 
@@ -23,9 +26,15 @@ public class ItemView extends LinearLayout {
     private Button bBuy;
     private Button bSell;
 
+    private MarketViewModel viewModel = new MarketViewModel();
+
     public ItemView(Context context) {
         super(context);
         init();
+
+
+
+
     }
 
     //Initializes ItemView
@@ -44,9 +53,31 @@ public class ItemView extends LinearLayout {
     }
 
     //This method loads the item view with given good's info
-    public void load(int i) {
-        name.setText("Sample Item");
-        price.setText("" + i);
+    public void load( final MarketGoodItem m, final int cost, final int owned) {
+        String itemName = m.name().toLowerCase();
+        itemName = itemName.substring(0, 1).toUpperCase() + itemName.substring(1);
+        name.setText(itemName);
+        price.setText("$" + cost);
+        amountOwn.setText("" + owned);
+        bBuy.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                System.out.println(name.getText().toString());
+                viewModel.buyItem(m, cost);
+                amountBuyable.setText("Butts");
+                amountOwn.setText("" + viewModel.amountOwned(m));
+                // Take name, price, and value from amountSelect
+                // Update funds, amountOwn, amountBuyable
+            }
+        });
+        bSell.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                viewModel.sellItem(m, cost);
+                //Here I am assuming that the cost of a good to sell is == to the cost to buy
+                amountOwn.setText("" + viewModel.amountOwned(m));
+                // Take name, price, and value from amountSelect
+                // Update funds, amountOwn, amountBuyable
+            }
+        });
     }
 
 }

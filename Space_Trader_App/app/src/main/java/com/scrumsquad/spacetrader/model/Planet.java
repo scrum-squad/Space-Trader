@@ -23,6 +23,7 @@ public class Planet {
     public Planet(String name, TechLevel techLevel, Resources resources) {
         this.techLevel = techLevel;
         this.resources = resources;
+        this.name = name;
     }
 
     public Resources getResources() {
@@ -31,5 +32,9 @@ public class Planet {
 
     public TechLevel getTechLevel() {
         return techLevel;
+    }
+
+    public String getName() {
+        return name;
     }
 }

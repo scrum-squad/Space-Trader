@@ -1,5 +1,6 @@
 package com.scrumsquad.spacetrader.views;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,36 +11,75 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.scrumsquad.spacetrader.model.Game;
+import com.scrumsquad.spacetrader.model.MarketGoodItem;
+import com.scrumsquad.spacetrader.viewModel.MarketViewModel;
 
 import com.scrumsquad.spacetrader.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MarketActivity extends AppCompatActivity {
+
+    private MarketViewModel viewModel;
 
     private Button leaveMarket;
     private ScrollView scrollView;
-    private LinearLayout marketDisplay;
+    private TableLayout marketDisplay;
 
     public void onCreate(Bundle instanceSaved) {
         super.onCreate(instanceSaved);
         setContentView(R.layout.activity_marketplace);
+        viewModel = ViewModelProviders.of(this).get(MarketViewModel.class);
+
 
         scrollView = findViewById(R.id.market_scroll);
         marketDisplay = findViewById(R.id.market_display);
 
-
-        ItemView addedItem = new ItemView(this.getApplicationContext());
-        addedItem.load(10);
-
-        marketDisplay.addView(addedItem,
-                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        //Debug tool: Test functionality of loading the market place
+        loadMarket(3);
 
         leaveMarket = findViewById(R.id.market_leave_button);
         leaveMarket.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                clearMarket();
                 Intent gotoMain = new Intent(view.getContext(), GameActivity.class);
                 startActivity(gotoMain);
             }
         });
+    }
+
+    public void loadMarket(int limit) {
+        //Run through param data structure and add each item
+        List<MarketGoodItem> marketInventory = new ArrayList<MarketGoodItem>();
+        for (MarketGoodItem m : MarketGoodItem.values()) {
+            if (Game.getGame().getCurrentPlanet().getTechLevel().getLevel() >= m.getTechLvlMostProduction()){
+                marketInventory.add(m);
+            }
+        }
+        for (MarketGoodItem m : marketInventory) {
+            TableRow added = new TableRow(this);
+            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+            added.setLayoutParams(lp);
+
+            //Create new ItemView object
+            ItemView item = new ItemView(this.getApplicationContext());
+            //Loads data
+            System.out.println(viewModel.amountOwned(m));
+            item.load(m, viewModel.calculatePrice(m), viewModel.amountOwned(m));
+
+            added.addView(item);
+            marketDisplay.addView(added);
+        }
+    }
+
+
+    public void clearMarket() {
+        marketDisplay.removeAllViewsInLayout();
     }
 }
