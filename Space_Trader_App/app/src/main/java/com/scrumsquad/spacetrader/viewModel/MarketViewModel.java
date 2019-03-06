@@ -55,7 +55,11 @@ public class MarketViewModel extends ViewModel {
             System.out.println("Bought " + item.name());
         }
     }
-//    public void sellItem(MarketGoodItem item, int value) {
-//        if (amountOwned(item) > 0)
-//    }
+    public void sellItem(MarketGoodItem item, int value) {
+        if (amountOwned(item) > 0) {
+            // If the player owns the item
+            player.getShip().removeItem(item);
+            player.setCredits(player.getCredits() + value);
+        }
+    }
 }

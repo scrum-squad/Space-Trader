@@ -41,7 +41,7 @@ public enum Ships {
 
     public MarketGoodItem removeItem(MarketGoodItem sold) {
         for (int i = 0; i <= inventory.length - 1; i++) {
-            if (inventory[i].equals(sold)) {
+            if (sold.equals(inventory[i])) {
                 MarketGoodItem soldItem = inventory[i];
                 inventory[i] = null;
                 System.out.println("Removed " + soldItem.name() + " from ship inventory");
