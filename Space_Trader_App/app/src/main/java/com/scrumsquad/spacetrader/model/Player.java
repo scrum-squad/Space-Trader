@@ -3,14 +3,14 @@ package com.scrumsquad.spacetrader.model;
 public class Player {
     private String name;
     private int credits;
-    private Ships ship;
+    private Ship ship;
     private Skills[] skills;
     private Planet currentPlanet;
 
     public Player(String name, int credits, Ships ship, Skills[] skill) {
         this.name = name;
         this.credits = credits;
-        this.ship = ship;
+        this.ship = new Ship(ship);
         this.skills = skill;
     }
 
@@ -22,7 +22,7 @@ public class Player {
         this.credits = credits;
     }
 
-    public Ships getShip() {
+    public Ship getShip() {
         return ship;
     }
 
