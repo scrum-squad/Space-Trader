@@ -18,6 +18,10 @@ public class Player {
         return credits;
     }
 
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
+
     public Ships getShip() {
         return ship;
     }

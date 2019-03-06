@@ -32,14 +32,7 @@ public class ItemView extends LinearLayout {
         super(context);
         init();
 
-        bBuy.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                System.out.println(name.getText().toString());
-                // ViewModel
-                // Take name, price, and value from amountSelect
-                // Update funds, amountOwn, amountBuyable
-            }
-        });
+
 
         bSell.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -66,12 +59,21 @@ public class ItemView extends LinearLayout {
     }
 
     //This method loads the item view with given good's info
-    public void load(MarketGoodItem m, int cost, int owned) {
+    public void load( final MarketGoodItem m, final int cost, int owned) {
         String itemName = m.name().toLowerCase();
         itemName = itemName.substring(0, 1).toUpperCase() + itemName.substring(1);
         name.setText(itemName);
         price.setText("$" + cost);
         amountOwn.setText("" + owned);
+        bBuy.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                System.out.println(name.getText().toString());
+                viewModel.buyItem(m, cost);
+                amountBuyable.setText("" + (Integer.parseInt((String) amountBuyable.getText())- 1));
+                // Take name, price, and value from amountSelect
+                // Update funds, amountOwn, amountBuyable
+            }
+        });
     }
 
 }
