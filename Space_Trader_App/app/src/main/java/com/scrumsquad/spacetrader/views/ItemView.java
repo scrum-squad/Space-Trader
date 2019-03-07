@@ -19,9 +19,6 @@ public class ItemView extends LinearLayout {
     private TextView name;
     private TextView price;
     private TextView amountOwn;
-    private TextView amountBuyable;
-
-    private EditText amountSelect;
 
     private Button bBuy;
     private Button bSell;
@@ -46,8 +43,6 @@ public class ItemView extends LinearLayout {
         name = findViewById(R.id.market_item_name);
         price = findViewById(R.id.market_item_price);
         amountOwn = findViewById(R.id.market_item_owned);
-        amountBuyable = findViewById(R.id.market_item_available);
-        amountSelect = findViewById(R.id.market_item_amount);
         bBuy = findViewById(R.id.market_item_buy);
         bSell = findViewById(R.id.market_item_sell);
     }
@@ -58,13 +53,12 @@ public class ItemView extends LinearLayout {
         itemName = itemName.substring(0, 1).toUpperCase() + itemName.substring(1);
         name.setText(itemName);
         price.setText("$" + cost);
-        amountOwn.setText("" + owned);
+        amountOwn.setText("Owned: " + owned);
         bBuy.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 System.out.println(name.getText().toString());
                 viewModel.buyItem(m, cost);
-                amountBuyable.setText("Butts");
-                amountOwn.setText("" + viewModel.amountOwned(m));
+                amountOwn.setText("Owned: " + viewModel.amountOwned(m));
                 // Take name, price, and value from amountSelect
                 // Update funds, amountOwn, amountBuyable
                 remainingCredits.setText("Your Credits: " + viewModel.playerCredits());
@@ -74,7 +68,7 @@ public class ItemView extends LinearLayout {
             public void onClick(View view) {
                 viewModel.sellItem(m, cost);
                 //Here I am assuming that the cost of a good to sell is == to the cost to buy
-                amountOwn.setText("" + viewModel.amountOwned(m));
+                amountOwn.setText("Owned: " + viewModel.amountOwned(m));
                 // Take name, price, and value from amountSelect
                 // Update funds, amountOwn, amountBuyable
                 remainingCredits.setText("Your Credits: " + viewModel.playerCredits());
