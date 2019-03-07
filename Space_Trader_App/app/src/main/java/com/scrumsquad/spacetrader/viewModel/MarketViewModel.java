@@ -62,4 +62,8 @@ public class MarketViewModel extends ViewModel {
             player.setCredits(player.getCredits() + value);
         }
     }
+
+    public int playerCredits() {
+        return player.getCredits();
+    }
 }

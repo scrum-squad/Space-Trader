@@ -31,6 +31,7 @@ public class MarketActivity extends AppCompatActivity {
     private Button leaveMarket;
     private ScrollView scrollView;
     private TableLayout marketDisplay;
+    public TextView startingCredits;
 
     public void onCreate(Bundle instanceSaved) {
         super.onCreate(instanceSaved);
@@ -40,6 +41,8 @@ public class MarketActivity extends AppCompatActivity {
 
         scrollView = findViewById(R.id.market_scroll);
         marketDisplay = findViewById(R.id.market_display);
+        startingCredits = (TextView) findViewById(R.id.market_display_funds);
+        startingCredits.setText("Your Credits: " + viewModel.playerCredits());
 
         //Debug tool: Test functionality of loading the market place
         loadMarket(3);
@@ -71,15 +74,15 @@ public class MarketActivity extends AppCompatActivity {
             ItemView item = new ItemView(this.getApplicationContext());
             //Loads data
             System.out.println(viewModel.amountOwned(m));
-            item.load(m, viewModel.calculatePrice(m), viewModel.amountOwned(m));
+            item.load(m, viewModel.calculatePrice(m), viewModel.amountOwned(m), startingCredits);
 
             added.addView(item);
             marketDisplay.addView(added);
         }
     }
 
-
     public void clearMarket() {
         marketDisplay.removeAllViewsInLayout();
     }
+
 }

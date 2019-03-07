@@ -53,7 +53,7 @@ public class ItemView extends LinearLayout {
     }
 
     //This method loads the item view with given good's info
-    public void load( final MarketGoodItem m, final int cost, final int owned) {
+    public void load( final MarketGoodItem m, final int cost, final int owned, final TextView remainingCredits) {
         String itemName = m.name().toLowerCase();
         itemName = itemName.substring(0, 1).toUpperCase() + itemName.substring(1);
         name.setText(itemName);
@@ -67,6 +67,7 @@ public class ItemView extends LinearLayout {
                 amountOwn.setText("" + viewModel.amountOwned(m));
                 // Take name, price, and value from amountSelect
                 // Update funds, amountOwn, amountBuyable
+                remainingCredits.setText("Your Credits: " + viewModel.playerCredits());
             }
         });
         bSell.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +77,7 @@ public class ItemView extends LinearLayout {
                 amountOwn.setText("" + viewModel.amountOwned(m));
                 // Take name, price, and value from amountSelect
                 // Update funds, amountOwn, amountBuyable
+                remainingCredits.setText("Your Credits: " + viewModel.playerCredits());
             }
         });
     }
