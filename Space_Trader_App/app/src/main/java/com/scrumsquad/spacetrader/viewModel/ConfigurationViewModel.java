@@ -80,10 +80,8 @@ public class ConfigurationViewModel extends ViewModel {
     public void setName(String name) {
         this.playerName = name;
     }
+
     public String getName() {
         return this.playerName;
     }
-
-
-
 }

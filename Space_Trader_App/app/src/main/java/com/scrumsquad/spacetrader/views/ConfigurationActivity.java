@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -67,7 +69,27 @@ public class ConfigurationActivity extends AppCompatActivity{
         difSpinner.setAdapter(adapter);
         difSpinner.setSelection(viewModel.getDiff().ordinal());
 
-        startGame.setClickable(false);
+        playerName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!(playerName.getText().toString().equals(""))) {
+                    startGame.setClickable(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (playerName.getText().toString().equals("")) {
+                    startGame.setClickable(false);
+                }
+            }
+        });
+
         startGame.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 viewModel.setName(playerName.getText().toString());
@@ -79,9 +101,9 @@ public class ConfigurationActivity extends AppCompatActivity{
                 //Post Generation: Opens main game screen
                 Intent swap = new Intent(view.getContext(), GameActivity.class);
                 startActivity(swap);
-
             }
         });
+        startGame.setClickable(false);
     }
 
     public class ButtonClickListener implements View.OnClickListener {
@@ -112,6 +134,7 @@ public class ConfigurationActivity extends AppCompatActivity{
             }
             updateSkillLabels();
             updateRemainingSkillPoints();
+            checkNameInput();
         }
 
     }
@@ -172,6 +195,14 @@ public class ConfigurationActivity extends AppCompatActivity{
         if (skillPointsLeft == 0) {
             startGame.setClickable(true);
             disablePlus();
+        } else {
+            startGame.setClickable(false);
+        }
+    }
+
+    private void checkNameInput() {
+        if (playerName.getText().toString().equals("")) {
+            startGame.setClickable(false);
         }
     }
 }
