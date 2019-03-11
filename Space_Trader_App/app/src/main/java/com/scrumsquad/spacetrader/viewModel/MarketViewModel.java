@@ -21,7 +21,7 @@ public class MarketViewModel extends ViewModel {
 
     /**
      * Uses the currentPlanet and the item to calculate the real price
-     *
+     *  Generates price from economic model.
      * @return the calculated price
      */
     public int calculatePrice(MarketGoodItem item) {
@@ -40,7 +40,6 @@ public class MarketViewModel extends ViewModel {
         int ownCount = 0;
         for (MarketGoodItem inInv: player.getShip().getInventory()) {
             if (item.equals(inInv)) {
-                // Might throw a NPE might need to switch var positions
                 ownCount++;
             }
         }
