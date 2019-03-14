@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    >
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/planetWidget"
@@ -53,14 +54,32 @@
         android:layout_height="wrap_content"
         android:id = "@+id/travelLabel"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:text = "TRAVEL PLACEHOLDER"/>
     <Slider
         android:id = "@+id/travelOptions"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
         app:layout_constraintTop_toBottomOf = "@id/travelLabel"
-        app:layout_constraintRight_toRightOf = "parent"
+        app:layout_constraintLeft_toLeftOf = "@id/travelLabel"
         />
+    <TextView
+        android:id = "@+id/fuelLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/travelOptions"
+        app:layout_constraintTop_toBottomOf="@id/travelOptions"
+        android:text = "FUEL: "
+        />
+
+    <ProgressBar
+        android:id="@+id/fuelProgress"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="62dp"
+        android:layout_height="22dp"
+        android:indeterminate="false"
+        app:layout_constraintLeft_toRightOf="@id/fuelLevel"
+        app:layout_constraintTop_toBottomOf="@id/travelOptions" />
 
 
 </android.support.constraint.ConstraintLayout>
