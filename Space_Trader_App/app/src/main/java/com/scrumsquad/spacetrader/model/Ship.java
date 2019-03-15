@@ -3,12 +3,14 @@ package com.scrumsquad.spacetrader.model;
 public class Ship {
     private String name;
     private MarketGoodItem[] inventory;
-    private int fuel;
+    //private int fuel;
+    private int range;
 
     public Ship(Ships type) {
         this.inventory = new MarketGoodItem[type.getCargoCap()];
         this.name = type.toString();
-        this.fuel = type.getFuel();
+        //this.fuel = type.getFuel();
+        this.range = type.getRange();
     }
 
     public MarketGoodItem[] getInventory() {
@@ -49,5 +51,9 @@ public class Ship {
         // Item is not in inventory
         System.out.println(sold.name() + " is not in ship inventory");
         return null;
+    }
+
+    public int getRange(){
+        return range;
     }
 }

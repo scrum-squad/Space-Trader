@@ -55,4 +55,12 @@ public class SolarSystem {
     public String getCoordinates() {
         return "(" + xCord + "," + yCord + ")";
     }
+
+    public int getxCord() {
+        return this.xCord;
+    }
+
+    public int getyCord() {
+        return this.yCord;
+    }
 }

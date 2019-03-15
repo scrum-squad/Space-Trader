@@ -94,4 +94,8 @@ public class Game {
     public Planet getCurrentPlanet() {
         return player.getCurrentPlanet();
     }
+
+    public HashMap<String, SolarSystem> getSolarSystems(){
+        return solarSystems;
+    }
 }

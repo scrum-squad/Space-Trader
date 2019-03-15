@@ -3,7 +3,7 @@ package com.scrumsquad.spacetrader.model;
 
 // This should be treated essentially as a resource for the ship class
 public enum Ships {
-    GNAT  (15);
+    GNAT  (15, 14, 1, 0, 1, 0);
 
 
     //These allow us to build the ship.
@@ -19,8 +19,13 @@ public enum Ships {
 
 
 
-    Ships(int cargoCap) {
+    Ships(int cargoCap, int range, int weaponCap, int shieldCap, int gadgetCap, int crewCap) {
         this.cargoCap = cargoCap;
+        this.range = range;
+        this.weaponCap = weaponCap;
+        this.shieldCap = shieldCap;
+        this.gadgetCap = gadgetCap;
+        this.crewCap = crewCap;
 
     }
 
@@ -37,6 +42,8 @@ public enum Ships {
     public int getCargoCap() {
         return cargoCap;
     }
+
+    public int getRange() {return this.range;}
 
 
 
