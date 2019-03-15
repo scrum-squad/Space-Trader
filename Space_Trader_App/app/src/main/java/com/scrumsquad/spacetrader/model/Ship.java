@@ -3,10 +3,12 @@ package com.scrumsquad.spacetrader.model;
 public class Ship {
     private String name;
     private MarketGoodItem[] inventory;
+    private int fuel;
 
     public Ship(Ships type) {
         this.inventory = new MarketGoodItem[type.getCargoCap()];
         this.name = type.toString();
+        this.fuel = type.getFuel();
     }
 
     public MarketGoodItem[] getInventory() {

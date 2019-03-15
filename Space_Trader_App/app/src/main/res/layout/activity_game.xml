@@ -30,6 +30,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainGame_filler" />
 
-    <include layout="@layout/travel_tile"/>
+    <include layout="@layout/travel_tile" />
 
 </android.support.constraint.ConstraintLayout>
