@@ -12,7 +12,7 @@
         android:layout_height="80dp"
         android:layout_alignParentStart="true"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:src="@drawable/planetPixelArt1"
+        android:src="@drawable/planet_pixel_art1"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
     <TextView
