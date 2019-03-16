@@ -3,7 +3,7 @@ package com.scrumsquad.spacetrader.model;
 
 // This should be treated essentially as a resource for the ship class
 public enum Ships {
-    GNAT  (15);
+    GNAT  (15, 14);
 
 
     //These allow us to build the ship.
@@ -15,13 +15,13 @@ public enum Ships {
     private int shieldCap;
     private int gadgetCap;
     private int crewCap;
-    private int range;
+    private int fuelCap;
 
 
 
-    Ships(int cargoCap) {
+    Ships(int cargoCap, int fuelCap) {
         this.cargoCap = cargoCap;
-
+        this.fuelCap = fuelCap;
     }
 
     //Rewritten name method
@@ -38,9 +38,10 @@ public enum Ships {
         return cargoCap;
     }
 
-
-
-
-
+    // For now, I am assuming there is a 1:1 ratio of fuel:distance (in parsecs)
+    // For example, 1 gallon of fuel allows for 1 parsec of travel
+    public int getFuelCap() {
+        return fuelCap;
+    }
 
 }

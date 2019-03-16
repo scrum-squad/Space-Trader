@@ -8,7 +8,7 @@ public class Ship {
     public Ship(Ships type) {
         this.inventory = new MarketGoodItem[type.getCargoCap()];
         this.name = type.toString();
-        this.fuel = type.getFuel();
+        this.fuel = type.getFuelCap();
     }
 
     public MarketGoodItem[] getInventory() {
@@ -50,4 +50,5 @@ public class Ship {
         System.out.println(sold.name() + " is not in ship inventory");
         return null;
     }
+
 }

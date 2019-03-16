@@ -19,21 +19,29 @@ public class GameActivity extends AppCompatActivity {
 
     private GameViewModel viewModel;
 
-    private Button enterMarket = findViewById(R.id.game_goto_market);
+    private Button enterMarket;
 
     // The following can be copied for the TravelTile
-    final TextView planetName = findViewById(R.id.planetName);
-    final TextView techLevel = findViewById(R.id.planetTech);
-    final TextView coordinates = findViewById(R.id.planetCord);
-    final TextView resourceLevel = findViewById(R.id.planetResource);
-    final TextView travelText = findViewById(R.id.travelLabel);
+    private TextView planetName;
+    private TextView techLevel;
+    private TextView coordinates;
+    private TextView resourceLevel;
+    private TextView travelText;
     // Interactive Pieces
-    final ProgressBar fuelLevel = findViewById(R.id.fuelProgress);
-    final Spinner travelLocations = findViewById(R.id.travelOptions);
+    private ProgressBar fuelLevel;
+    private Spinner travelLocations;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        enterMarket = findViewById(R.id.game_goto_market);
+        planetName = findViewById(R.id.planetName);
+        techLevel = findViewById(R.id.planetTech);
+        coordinates = findViewById(R.id.planetCord);
+        resourceLevel = findViewById(R.id.planetResource);
+        travelText = findViewById(R.id.travelLabel);
+        fuelLevel = findViewById(R.id.fuelProgress);
+        travelLocations = findViewById(R.id.travelOptions);
 
         enterMarket.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -43,14 +51,14 @@ public class GameActivity extends AppCompatActivity {
         });
 
 
-
-
+        //commented out for now because it doesn't populate
+        /**
         ArrayAdapter<> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
                 Arrays.asList(viewModel.generatePossibleDestinations()));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         travelLocations.setAdapter(adapter);
         travelLocations.setSelection(viewModel.getDiff().ordinal());
-
+        */
 
     }
 }
