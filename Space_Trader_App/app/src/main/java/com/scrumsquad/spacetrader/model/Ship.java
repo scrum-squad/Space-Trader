@@ -51,4 +51,11 @@ public class Ship {
         return null;
     }
 
+    public int getCurrentFuel() {
+        return this.fuel;
+    }
+
+    public void subtractUsedFuel(int amountUsed) {
+        this.fuel -= amountUsed;
+    }
 }

@@ -9,9 +9,11 @@ public class Game {
     // other variables
     private Player player;
     private Difficulty diff;
+
     // hashmap has the solar system coordinates (key) and the system itself (value)
     private HashMap<String, SolarSystem> solarSystems;
     private ArrayList<String> coordinatesUsed;
+
 
     private Game(Player player1, Difficulty diff1, String[] solarSystemNames) {
         this.player = player1;
@@ -54,6 +56,7 @@ public class Game {
         }
 
         // assign the first planet created to be our starting planet
+        player.setCurrentSystem(solarSystems.get(solarSystemNames[0]));
         player.setCurrentPlanet(solarSystems.get(solarSystemNames[0]).getPlanets()[0]);
 
         /*
@@ -93,5 +96,13 @@ public class Game {
 
     public Planet getCurrentPlanet() {
         return player.getCurrentPlanet();
+    }
+
+    public ArrayList<String> getCoordinatesUsed() {
+        return coordinatesUsed;
+    }
+
+    public HashMap<String, SolarSystem> getSolarSystems() {
+        return solarSystems;
     }
 }

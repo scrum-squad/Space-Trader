@@ -5,6 +5,7 @@ public class Player {
     private int credits;
     private Ship ship;
     private Skills[] skills;
+    private SolarSystem currentSystem;
     private Planet currentPlanet;
 
     public Player(String name, int credits, Ships ship, Skills[] skill) {
@@ -36,5 +37,13 @@ public class Player {
 
     public void setCurrentPlanet(Planet planet) {
         currentPlanet = planet;
+    }
+
+    public SolarSystem getCurrentSystem() {
+        return currentSystem;
+    }
+
+    public void setCurrentSystem(SolarSystem currentSystem) {
+        this.currentSystem = currentSystem;
     }
 }
