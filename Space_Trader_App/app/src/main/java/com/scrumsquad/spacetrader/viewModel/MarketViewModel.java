@@ -17,9 +17,11 @@ import java.sql.SQLOutput;
 
 public class MarketViewModel extends ViewModel {
 
+    private Player player = Game.getGame().getPlayer();
+
     /**
      * Uses the currentPlanet and the item to calculate the real price
-     *
+     *  Generates price from economic model.
      * @return the calculated price
      */
     public int calculatePrice(MarketGoodItem item) {
@@ -36,13 +38,31 @@ public class MarketViewModel extends ViewModel {
 
     public int amountOwned(MarketGoodItem item) {
         int ownCount = 0;
-        for (MarketGoodItem inInv: Game.getGame().getPlayer().getShip().getInventory()) {
+        for (MarketGoodItem inInv: player.getShip().getInventory()) {
             if (item.equals(inInv)) {
-                // Might throw a NPE might need to switch var positions
                 ownCount++;
             }
         }
         return ownCount;
     }
 
+    public void buyItem(MarketGoodItem item, int cost) {
+        if( player.getShip().canAdd() && player.getCredits() >= cost) {
+            // If the player has room and credits for the item
+            player.getShip().addItem(item);
+            player.setCredits(player.getCredits() - cost);
+            System.out.println("Bought " + item.name());
+        }
+    }
+    public void sellItem(MarketGoodItem item, int value) {
+        if (amountOwned(item) > 0) {
+            // If the player owns the item
+            player.getShip().removeItem(item);
+            player.setCredits(player.getCredits() + value);
+        }
+    }
+
+    public int playerCredits() {
+        return player.getCredits();
+    }
 }

@@ -29,19 +29,6 @@ public class ConfigurationViewModel extends ViewModel {
     private Difficulty diff = Difficulty.Normal;
 
 
-
-
-
-
-    /**
-     * This should generate the view model of our config screen
-     *
-     * @param application
-     */
-//    public ConfigurationViewModel(@NonNull Application application) {
-//        super(application);
-//    }
-
     public void incrementSkill(Skills skill){
         int ind = skill.ordinal();
         playerSkills[ind].updateLevel(playerSkills[ind].getLevel() + 1);
@@ -62,7 +49,7 @@ public class ConfigurationViewModel extends ViewModel {
     public void generatorPrint() {
         System.out.println("Player Name: " + playerName);
         System.out.println("Credits: " + STARTING_CREDITS);
-        System.out.println("Ship: " + STARTING_SHIP.getName());
+        System.out.println("Ship: " + STARTING_SHIP.toString());
         for (Skills skill: playerSkills) {
             System.out.println(skill.name() + ": " + skill.getLevel());
         }
@@ -93,10 +80,8 @@ public class ConfigurationViewModel extends ViewModel {
     public void setName(String name) {
         this.playerName = name;
     }
+
     public String getName() {
         return this.playerName;
     }
-
-
-
 }

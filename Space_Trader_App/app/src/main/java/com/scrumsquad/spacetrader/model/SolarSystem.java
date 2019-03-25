@@ -52,7 +52,19 @@ public class SolarSystem {
         return name;
     }
 
+    public int getxCord() {
+        return xCord;
+    }
+
+    public int getyCord() {
+        return yCord;
+    }
+
     public String getCoordinates() {
         return "(" + xCord + "," + yCord + ")";
+    }
+
+    public String toString() {
+        return getName() + " " + getCoordinates();
     }
 }

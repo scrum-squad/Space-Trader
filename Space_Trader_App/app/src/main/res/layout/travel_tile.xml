@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    >
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/planetWidget"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:src="@drawable/planet_pixel_art1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+    <TextView
+        android:id = "@+id/planetName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf = "@id/planetWidget"
+        app:layout_constraintTop_toTopOf="@id/planetWidget"
+        android:layout_toLeftOf = "@id/planetWidget"
+
+        android:text = "PLANET NAME"/>
+    <TextView
+        android:id = "@+id/planetTech"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:layout_below = "@id/planetName"
+        app:layout_constraintTop_toBottomOf="@id/planetName"
+        app:layout_constraintBottom_toTopOf="@id/planetCord"
+        app:layout_constraintLeft_toRightOf = "@id/planetWidget"
+        android:text = "TECH LEVEL"/>
+    <TextView
+        android:id = "@+id/planetCord"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/planetTech"
+        app:layout_constraintLeft_toRightOf = "@id/planetWidget"
+        app:layout_constraintBottom_toTopOf="@+id/planetResource"
+        android:text = "COORDINATES"/>
+    <TextView
+        android:id = "@+id/planetResource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf = "@id/planetWidget"
+        app:layout_constraintTop_toBottomOf="@id/planetCord"
+        android:text = "RESOURCES"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id = "@+id/travelLabel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text = "TRAVEL PLACEHOLDER"/>
+    <Spinner
+        android:id = "@+id/travelOptions"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:spinnerMode="dropdown"
+        app:layout_constraintTop_toBottomOf = "@id/travelLabel"
+        app:layout_constraintLeft_toLeftOf = "@id/travelLabel"
+        />
+    <TextView
+        android:id = "@+id/fuelLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/travelOptions"
+        app:layout_constraintTop_toBottomOf="@id/travelOptions"
+        android:text = "FUEL: "
+        />
+
+    <ProgressBar
+        android:id="@+id/fuelProgress"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="62dp"
+        android:layout_height="22dp"
+        android:indeterminate="false"
+        app:layout_constraintLeft_toRightOf="@id/fuelLevel"
+        app:layout_constraintTop_toBottomOf="@id/travelOptions" />
+
+
+</android.support.constraint.ConstraintLayout>
