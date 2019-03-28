@@ -64,14 +64,14 @@
         app:layout_constraintTop_toBottomOf = "@id/travelLabel"
         app:layout_constraintLeft_toLeftOf = "@id/travelLabel"
         />
+
     <TextView
-        android:id = "@+id/fuelLevel"
+        android:id="@+id/fuelLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="FUEL: "
         app:layout_constraintLeft_toLeftOf="@id/travelOptions"
-        app:layout_constraintTop_toBottomOf="@id/travelOptions"
-        android:text = "FUEL: "
-        />
+        app:layout_constraintTop_toBottomOf="@id/travelOptions" />
 
     <ProgressBar
         android:id="@+id/fuelProgress"
@@ -81,6 +81,17 @@
         android:indeterminate="false"
         app:layout_constraintLeft_toRightOf="@id/fuelLevel"
         app:layout_constraintTop_toBottomOf="@id/travelOptions" />
+
+    <Button
+        android:id="@+id/travel_button"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="145dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="200dp"
+        android:text="Travel"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/planetCord"
+        app:layout_constraintTop_toBottomOf="@+id/fuelLevel" />
 
 
 </android.support.constraint.ConstraintLayout>

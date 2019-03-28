@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.scrumsquad.spacetrader.R;
 import com.scrumsquad.spacetrader.model.Game;
+import com.scrumsquad.spacetrader.model.Planet;
 import com.scrumsquad.spacetrader.model.SolarSystem;
 import com.scrumsquad.spacetrader.viewModel.GameViewModel;
 
@@ -34,6 +35,8 @@ public class GameActivity extends AppCompatActivity {
     // Interactive Pieces
     private ProgressBar fuelLevel;
     private Spinner travelLocations;
+    private Button travelButton;
+    private Button refuelButton;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,8 @@ public class GameActivity extends AppCompatActivity {
         travelText = findViewById(R.id.travelLabel);
         fuelLevel = findViewById(R.id.fuelProgress);
         travelLocations = findViewById(R.id.travelOptions);
+        travelButton = findViewById(R.id.travel_button);
+        refuelButton = findViewById(R.id.refuel_button);
 
         viewModel = new GameViewModel();
 
@@ -56,14 +61,39 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
+        // Don't understand this yet
+        //travelLocations.setSelection(viewModel.);
 
-        //commented out for now because it doesn't populate
+        travelButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                SolarSystem destination = (SolarSystem) travelLocations.getSelectedItem();
+                viewModel.travelToDestination(destination);
+                setup(destination);
+            }
+        });
+
+        refuelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.setTotalFuel(viewModel.getMAX_FUEL());
+                setup(viewModel.getCurrentSystem());
+            }
+        });
+
+        setup(viewModel.getCurrentSystem());
+    }
+
+    public void setup(SolarSystem system) {
+        Planet planet = system.getPlanets()[0];
+        planetName.setText("Planet: " + planet.getName());
+        techLevel.setText(planet.getTechLevel().toString());
+        coordinates.setText("Coordiates: " + system.getCoordinates());
+        resourceLevel.setText(planet.getResources().toString());
+        fuelLevel.setProgress((int) ((double)viewModel.getTotalFuel() / (double) viewModel.getMAX_FUEL()));
 
         ArrayAdapter<SolarSystem> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
                 viewModel.getPossibleDestinations());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         travelLocations.setAdapter(adapter);
-        // Don't understand this yet
-        //travelLocations.setSelection(viewModel.);
     }
 }

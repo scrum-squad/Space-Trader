@@ -4,11 +4,13 @@ public class Ship {
     private String name;
     private MarketGoodItem[] inventory;
     private int fuel;
+    private final int MAX_FUEL;
 
     public Ship(Ships type) {
         this.inventory = new MarketGoodItem[type.getCargoCap()];
         this.name = type.toString();
         this.fuel = type.getFuelCap();
+        this.MAX_FUEL = type.getFuelCap();
     }
 
     public MarketGoodItem[] getInventory() {
@@ -53,6 +55,10 @@ public class Ship {
 
     public int getCurrentFuel() {
         return this.fuel;
+    }
+
+    public int getMAX_FUEL() {
+        return MAX_FUEL;
     }
 
     public void subtractUsedFuel(int amountUsed) {
