@@ -89,7 +89,7 @@ public class GameActivity extends AppCompatActivity {
         techLevel.setText(planet.getTechLevel().toString());
         coordinates.setText("Coordiates: " + system.getCoordinates());
         resourceLevel.setText(planet.getResources().toString());
-        fuelLevel.setProgress((int) ((double)viewModel.getTotalFuel() / (double) viewModel.getMAX_FUEL()));
+        fuelLevel.setProgress(100 * viewModel.getTotalFuel() / viewModel.getMAX_FUEL());
 
         ArrayAdapter<SolarSystem> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
                 viewModel.getPossibleDestinations());
