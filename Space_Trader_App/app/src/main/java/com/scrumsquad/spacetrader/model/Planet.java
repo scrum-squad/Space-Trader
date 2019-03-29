@@ -10,8 +10,9 @@ public class Planet {
      * @param name name of the planet
      */
     public Planet(String name) {
-        techLevel = TechLevel.getRandomTechLevel();
-        resources = Resources.getRandomResource();
+        this.name = name;
+        this.techLevel = TechLevel.getRandomTechLevel();
+        this.resources = Resources.getRandomResource();
     }
 
     /**

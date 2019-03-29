@@ -13,6 +13,7 @@ public class GameViewModel extends ViewModel {
 
     private Player player = Game.getGame().getPlayer();
     private int totalFuel = player.getShip().getCurrentFuel();
+    private int MAX_FUEL = player.getShip().getMAX_FUEL();
     private SolarSystem currentSystem = player.getCurrentSystem();
 
     // Declares the travel units available per a single unit of fuel
@@ -33,7 +34,7 @@ public class GameViewModel extends ViewModel {
         for (SolarSystem system : systems) {
             if (!currentSystem.equals(system)) {
                 int dist = distanceTo(system);
-                int fuelUsed = dist % distPerFuel;
+                int fuelUsed = dist / distPerFuel;
 
                 if (totalFuel - fuelUsed >= 0) {
                     destinations.add(system);
@@ -47,14 +48,34 @@ public class GameViewModel extends ViewModel {
     public void travelToDestination(SolarSystem destination) {
         // Calculate fuel used
         int dist = distanceTo(destination);
-        int fuelUsed = dist % distPerFuel;
+        int fuelUsed = dist / distPerFuel;
 
         // Update current system and planet
         // TODO: Select from varying planets, current selects default at index = 0
         player.setCurrentSystem(destination);
         player.setCurrentPlanet(destination.getPlanets()[0]);
 
-        // Update fuel
+        // Update viewModel
         player.getShip().subtractUsedFuel(fuelUsed);
+        totalFuel = player.getShip().getCurrentFuel();
+        currentSystem = player.getCurrentSystem();
+        MAX_FUEL = player.getShip().getMAX_FUEL();
+
+    }
+
+    public SolarSystem getCurrentSystem() {
+        return currentSystem;
+    }
+
+    public int getTotalFuel() {
+        return totalFuel;
+    }
+
+    public void setTotalFuel(int totalFuel) {
+        this.totalFuel = totalFuel;
+    }
+
+    public int getMAX_FUEL() {
+        return MAX_FUEL;
     }
 }
