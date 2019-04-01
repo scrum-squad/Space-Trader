@@ -1,13 +1,17 @@
 package com.scrumsquad.spacetrader.viewModel;
 
 import android.arch.lifecycle.ViewModel;
+import android.widget.Toast;
 
 import com.scrumsquad.spacetrader.model.Game;
 import com.scrumsquad.spacetrader.model.Player;
 import com.scrumsquad.spacetrader.model.SolarSystem;
+import com.scrumsquad.spacetrader.views.GameActivity;
+import com.scrumsquad.spacetrader.views.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameViewModel extends ViewModel {
 
@@ -55,6 +59,7 @@ public class GameViewModel extends ViewModel {
         player.setCurrentSystem(destination);
         player.setCurrentPlanet(destination.getPlanets()[0]);
 
+
         // Update viewModel
         player.getShip().subtractUsedFuel(fuelUsed);
         totalFuel = player.getShip().getCurrentFuel();
@@ -77,5 +82,9 @@ public class GameViewModel extends ViewModel {
 
     public int getMAX_FUEL() {
         return MAX_FUEL;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }
