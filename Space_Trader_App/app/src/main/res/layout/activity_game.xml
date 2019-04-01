@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="172dp"
         android:gravity="center_horizontal"
-        android:text="Don't Panic"
+        android:text="Don't Panic! at the Disco"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
