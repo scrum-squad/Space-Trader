@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.scrumsquad.spacetrader.R;
 import com.scrumsquad.spacetrader.model.Game;
@@ -19,6 +20,7 @@ import com.scrumsquad.spacetrader.viewModel.GameViewModel;
 import org.w3c.dom.Text;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -68,6 +70,14 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(View view) {
                 SolarSystem destination = (SolarSystem) travelLocations.getSelectedItem();
                 viewModel.travelToDestination(destination);
+                Random rand = new Random();
+                if (rand.nextInt(3) == 2) {
+                    Toast notif;
+                    CharSequence text = "You left the door open and a snake snuck on to the ship and you sold it for 100 credits";
+                    notif = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+                    viewModel.getPlayer().setCredits(viewModel.getPlayer().getCredits() + 100);
+                    notif.show();
+                }
                 setup(destination);
             }
         });
