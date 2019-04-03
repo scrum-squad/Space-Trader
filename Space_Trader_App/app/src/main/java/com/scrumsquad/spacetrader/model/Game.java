@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,10 +18,6 @@ public class Game implements Serializable{
     // other variables
     private Player player;
     private Difficulty diff;
-
-    // firebase variables
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("server/saving-data/fireblog");
 
     // hashmap has the solar system coordinates (key) and the system itself (value)
     private HashMap<String, SolarSystem> solarSystems;
