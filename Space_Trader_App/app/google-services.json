@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "1078527141611",
+    "firebase_url": "https://space-trader-e899c.firebaseio.com",
+    "project_id": "space-trader-e899c",
+    "storage_bucket": "space-trader-e899c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1078527141611:android:45a4e13693b4082d",
+        "android_client_info": {
+          "package_name": "com.scrumsquad.spacetrader"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV6HBgeqyXlP1-iN8r551pq_yZaxX4NLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1078527141611-1hq7a49csbk899dfh7bmgd6gr5vkrl6c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

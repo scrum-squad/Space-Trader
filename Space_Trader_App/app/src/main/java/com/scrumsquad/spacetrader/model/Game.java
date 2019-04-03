@@ -1,14 +1,24 @@
 package com.scrumsquad.spacetrader.model;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Game {
+public class Game implements Serializable{
     // this is a singleton so here's the only instance
     private static Game game;
     // other variables
     private Player player;
     private Difficulty diff;
+
+    // firebase variables
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("server/saving-data/fireblog");
 
     // hashmap has the solar system coordinates (key) and the system itself (value)
     private HashMap<String, SolarSystem> solarSystems;
@@ -104,5 +114,19 @@ public class Game {
 
     public HashMap<String, SolarSystem> getSolarSystems() {
         return solarSystems;
+    }
+
+    /**
+     * Saves game instance
+     */
+    public void saveGame(Game g) {
+
+    }
+
+    /**
+     * Loads game instance
+     */
+    public void loadGame(Game g) {
+
     }
 }
