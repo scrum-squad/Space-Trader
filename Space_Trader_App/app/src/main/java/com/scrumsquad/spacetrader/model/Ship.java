@@ -1,6 +1,7 @@
 package com.scrumsquad.spacetrader.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Ship {
@@ -11,14 +12,16 @@ public class Ship {
 
     public Ship() {
         Ships type = Ships.GNAT;
-        this.inventory = new ArrayList(type.getCargoCap());
+        MarketGoodItem[] list = new MarketGoodItem[type.getCargoCap()];
+        this.inventory = new ArrayList(Arrays.asList(list));
         this.name = type.toString();
         this.fuel = type.getFuelCap();
         this.MAX_FUEL = type.getFuelCap();
     }
 
     public Ship(Ships type) {
-        this.inventory = new ArrayList(type.getCargoCap());
+        MarketGoodItem[] list = new MarketGoodItem[type.getCargoCap()];
+        this.inventory = new ArrayList(Arrays.asList(list));
         this.name = type.toString();
         this.fuel = type.getFuelCap();
         this.MAX_FUEL = type.getFuelCap();
@@ -29,7 +32,9 @@ public class Ship {
     }
 
     public boolean canAdd() {
+        System.out.println("major: " + inventory.size());
         for (int i = 0; i <= inventory.size() - 1; i++) {
+            System.out.println("key: " + inventory.get(i));
             if (inventory.get(i) == null) {
                 return true;
             }

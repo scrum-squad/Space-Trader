@@ -47,6 +47,9 @@ public class MarketViewModel extends ViewModel {
     }
 
     public void buyItem(MarketGoodItem item, int cost) {
+        System.out.println("trying to buy");
+        System.out.println(player.getCredits());
+        System.out.println(player.getShip().canAdd());
         if( player.getShip().canAdd() && player.getCredits() >= cost) {
             // If the player has room and credits for the item
             player.getShip().addItem(item);
