@@ -11,6 +11,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.scrumsquad.spacetrader.R;
 import com.scrumsquad.spacetrader.model.Game;
 import com.scrumsquad.spacetrader.model.Planet;
@@ -53,6 +55,11 @@ public class GameActivity extends AppCompatActivity {
         travelLocations = findViewById(R.id.travelOptions);
         travelButton = findViewById(R.id.travel_button);
         refuelButton = findViewById(R.id.refuel_button);
+        Game game = Game.getGame();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("User");
+        myRef.setValue(game);
 
         viewModel = new GameViewModel();
 
@@ -94,7 +101,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void setup(SolarSystem system) {
-        Planet planet = system.getPlanets()[0];
+        Planet planet = system.getPlanets().get(0);
         planetName.setText("Planet: " + planet.getName());
         techLevel.setText(planet.getTechLevel().toString());
         coordinates.setText("Coordiates: " + system.getCoordinates());

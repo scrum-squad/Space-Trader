@@ -11,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Game implements Serializable{
     // this is a singleton so here's the only instance
@@ -24,14 +25,14 @@ public class Game implements Serializable{
     private ArrayList<String> coordinatesUsed;
 
 
-    private Game(Player player1, Difficulty diff1, String[] solarSystemNames) {
+    private Game(Player player1, Difficulty diff1, List<String> solarSystemNames) {
         this.player = player1;
         this.diff = diff1;
         this.makeSolarSystems(solarSystemNames);
     }
 
     // basically just calls the constructor for the instance of Game
-    public static void makeGame(Player player1, Difficulty diff1, String[] solarSystemNames) {
+    public static void makeGame(Player player1, Difficulty diff1, List<String> solarSystemNames) {
         game = new Game(player1, diff1, solarSystemNames);
     }
 
@@ -39,10 +40,11 @@ public class Game implements Serializable{
         this.player = player1;
     }
 
-    private void makeSolarSystems(String[] solarSystemNames) {
+    private void makeSolarSystems(List<String> solarSystemNames) {
         //make the solar systems here
         //each solar system needs to be at a different location
         //maybe a hashmap with the coordinates as the key and the solarSystem as the value
+        System.out.println(solarSystemNames);
 
         // initialize our map and list
         solarSystems = new HashMap<>();
@@ -50,7 +52,7 @@ public class Game implements Serializable{
 
         // initialize solar systems with these planet names (1 planet per system)
         int index = 0;
-        while (index < solarSystemNames.length) {
+        while (index < solarSystemNames.size()) {
             // makes a random coordinate with x between 0 and 150, y between 0 and 100 (based on M6 file)
             int xCoord = (int) (Math.random() * 151);
             int yCoord = (int) (Math.random() * 101);
@@ -59,28 +61,31 @@ public class Game implements Serializable{
             // only proceed if coordinates haven't been used, otherwise index will not get updated so you try again
             if (!coordinatesUsed.contains(coordinates)) {
                 coordinatesUsed.add(coordinates);
-                solarSystems.put(solarSystemNames[index], new SolarSystem(xCoord, yCoord, solarSystemNames[index]));
+                solarSystems.put(solarSystemNames.get(index), new SolarSystem(xCoord, yCoord, solarSystemNames.get(index)));
                 index++;
             }
         }
 
+        System.out.println(solarSystems);
+        System.out.println(solarSystems.get(solarSystemNames.get(0)).getPlanets());
+
         // assign the first planet created to be our starting planet
-        player.setCurrentSystem(solarSystems.get(solarSystemNames[0]));
-        player.setCurrentPlanet(solarSystems.get(solarSystemNames[0]).getPlanets()[0]);
+        player.setCurrentSystem(solarSystems.get(solarSystemNames.get(0)));
+        player.setCurrentPlanet(solarSystems.get(solarSystemNames.get(0)).getPlanets().get(0));
 
         /*
             FOR NOW WE WILL BE JUST PRINTING OUT THE RESULTS AT THE END OF THIS METHOD
          */
         System.out.println("========================");
-        for (int i = 0; i < solarSystemNames.length; i++) {
-            SolarSystem currSystem = solarSystems.get(solarSystemNames[i]);
-            Planet[] currPlanets = currSystem.getPlanets();
+        for (int i = 0; i < solarSystemNames.size(); i++) {
+            SolarSystem currSystem = solarSystems.get(solarSystemNames.get(i));
+            List<Planet> currPlanets = currSystem.getPlanets();
             // for now the only name that matters is the solar system name since each system only has one planet
             System.out.println("System Name: " + currSystem.getName());
             System.out.println("Coordinates: " + currSystem.getCoordinates());
-            for (int x = 0; x < currPlanets.length; x++) {
-                System.out.println("Resources: " + currPlanets[x].getResources());
-                System.out.println("Tech Level: " + currPlanets[x].getTechLevel());
+            for (int x = 0; x < currPlanets.size(); x++) {
+                System.out.println("Resources: " + currPlanets.get(x).getResources());
+                System.out.println("Tech Level: " + currPlanets.get(x).getTechLevel());
             }
             System.out.println("========================");
         }
@@ -113,19 +118,5 @@ public class Game implements Serializable{
 
     public HashMap<String, SolarSystem> getSolarSystems() {
         return solarSystems;
-    }
-
-    /**
-     * Saves game instance
-     */
-    public void saveGame(Game g) {
-
-    }
-
-    /**
-     * Loads game instance
-     */
-    public void loadGame(Game g) {
-
     }
 }

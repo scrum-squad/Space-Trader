@@ -13,7 +13,24 @@
           "package_name": "com.scrumsquad.spacetrader"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1078527141611-pf9p4vnk3l66928ro46i0h8oolf7lobg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.scrumsquad.spacetrader",
+            "certificate_hash": "7d627601fe9016c5ad803d7253ba1fd467977599"
+          }
+        },
+        {
+          "client_id": "1078527141611-rq2o5tr2vh64slf7nol49900pohr2vpa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.scrumsquad.spacetrader",
+            "certificate_hash": "ca6677bd63ca7d09519ae8d3ff6fe5d7dead0586"
+          }
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCV6HBgeqyXlP1-iN8r551pq_yZaxX4NLM"

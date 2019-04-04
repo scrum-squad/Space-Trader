@@ -14,6 +14,9 @@ import com.scrumsquad.spacetrader.model.Skills;
 import com.scrumsquad.spacetrader.views.GameActivity;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ConfigurationViewModel extends ViewModel {
 
@@ -23,7 +26,7 @@ public class ConfigurationViewModel extends ViewModel {
     private final int SKILL_POINTS = 16;
 
     // Things associated with the player char
-    private Skills[] playerSkills = Skills.values();
+    private List<Skills> playerSkills = new ArrayList(Arrays.asList(Skills.values()));
     private String playerName;
     private Game currentGame;
     private Difficulty diff = Difficulty.Normal;
@@ -31,17 +34,18 @@ public class ConfigurationViewModel extends ViewModel {
 
     public void incrementSkill(Skills skill){
         int ind = skill.ordinal();
-        playerSkills[ind].updateLevel(playerSkills[ind].getLevel() + 1);
+        playerSkills.get(ind).updateLevel(playerSkills.get(ind).getLevel() + 1);
     }
     public void decrementSkill(Skills skill) {
         int ind = skill.ordinal();
-        playerSkills[ind].updateLevel(playerSkills[ind].getLevel() - 1);
+        playerSkills.get(ind).updateLevel(playerSkills.get(ind).getLevel() - 1);
     }
 
     public void generateCharacter() {
         Player player1 = new Player(playerName, STARTING_CREDITS, STARTING_SHIP, playerSkills);
-        String[] planetNames = {"Acamar", "Adahn", "Aldea", "Andevian", "Antedi", "Balosnee", "Baratas", "Brax", "Bretel", "Calondia",
+        String[] planetNamess = {"Acamar", "Adahn", "Aldea", "Andevian", "Antedi", "Balosnee", "Baratas", "Brax", "Bretel", "Calondia",
                 "Campor", "Capelle", "Carzon", "Castor", "Cestus", "Cheron", "Courteney", "Daled", "Damast", "Janus", "Japori"};
+        List<String> planetNames = new ArrayList<>(Arrays.asList(planetNamess));
         Game.makeGame(player1, diff, planetNames);
         generatorPrint();
     }
@@ -66,7 +70,7 @@ public class ConfigurationViewModel extends ViewModel {
 
 
     public int getSkillLevel(int ind) {
-        return playerSkills[ind].getLevel();
+        return playerSkills.get(ind).getLevel();
     }
 
     public void setDiff(Difficulty diff) {
