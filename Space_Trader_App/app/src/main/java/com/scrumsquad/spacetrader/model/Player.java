@@ -10,6 +10,13 @@ public class Player {
     private SolarSystem currentSystem;
     private Planet currentPlanet;
 
+    public Player() {
+        this.name = "";
+        this.credits = 0;
+        this.ship = new Ship(Ships.GNAT);
+        this.skills = null;
+    }
+
     public Player(String name, int credits, Ships ship, List<Skills> skill) {
         this.name = name;
         this.credits = credits;

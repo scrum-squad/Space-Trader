@@ -17,7 +17,10 @@ public enum Ships {
     private int crewCap;
     private int fuelCap;
 
-
+    Ships() {
+        this.cargoCap = 0;
+        this.fuelCap = 0;
+    }
 
     Ships(int cargoCap, int fuelCap) {
         this.cargoCap = cargoCap;

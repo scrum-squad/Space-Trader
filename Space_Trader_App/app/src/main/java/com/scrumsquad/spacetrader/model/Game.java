@@ -24,6 +24,14 @@ public class Game implements Serializable{
     private HashMap<String, SolarSystem> solarSystems;
     private ArrayList<String> coordinatesUsed;
 
+    private Game() {
+        Ships s = Ships.GNAT;
+        this.player = new Player("", 0, s, null);
+        this.diff = Difficulty.Normal;
+        List<String> solarSystemNames = new ArrayList<>();
+        solarSystemNames.add("nme");
+        this.makeSolarSystems(solarSystemNames);
+    }
 
     private Game(Player player1, Difficulty diff1, List<String> solarSystemNames) {
         this.player = player1;
@@ -31,13 +39,16 @@ public class Game implements Serializable{
         this.makeSolarSystems(solarSystemNames);
     }
 
-    // basically just calls the constructor for the instance of Game
-    public static void makeGame(Player player1, Difficulty diff1, List<String> solarSystemNames) {
-        game = new Game(player1, diff1, solarSystemNames);
+    public static void makeGame(Game g) {
+        game = g;
     }
 
-    public void setPlayer(Player player1) {
-        this.player = player1;
+    // basically just calls the constructor for the instance of Game
+    public static void makeGame(Player player1, Difficulty diff1, List<String> solarSystemNames) {
+        game = new Game();
+        game.setPlayer(player1);
+        game.setDifficulty(diff1);
+        game.makeSolarSystems(solarSystemNames);
     }
 
     private void makeSolarSystems(List<String> solarSystemNames) {
@@ -118,5 +129,25 @@ public class Game implements Serializable{
 
     public HashMap<String, SolarSystem> getSolarSystems() {
         return solarSystems;
+    }
+
+    public void setPlayer(Player player1) {
+        this.player = player1;
+    }
+
+    public void setCoords(ArrayList coordinatesUsed) {
+        this.coordinatesUsed = coordinatesUsed;
+    }
+
+    public void setCurrentPlanet(Planet planet) {
+        this.player.setCurrentPlanet(planet);
+    }
+
+    public void setDifficulty(Difficulty diff) {
+        this.diff = diff;
+    }
+
+    public void setSolarSystems(HashMap<String, SolarSystem> solarSystems1) {
+        this.solarSystems = solarSystems1;
     }
 }

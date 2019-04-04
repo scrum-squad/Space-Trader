@@ -13,8 +13,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.scrumsquad.spacetrader.R;
 import com.scrumsquad.spacetrader.model.Difficulty;
+import com.scrumsquad.spacetrader.model.Game;
 import com.scrumsquad.spacetrader.model.Player;
 import com.scrumsquad.spacetrader.model.Skills;
 import com.scrumsquad.spacetrader.viewModel.ConfigurationViewModel;
@@ -97,6 +100,12 @@ public class ConfigurationActivity extends AppCompatActivity{
 
                 // THIS CREATES THE PLAYER AND THE UNIVERSE
                 viewModel.generateCharacter();
+
+                // saves game to firebase
+                Game game = Game.getGame();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("User");
+                myRef.setValue(game);
 
                 //Post Generation: Opens main game screen
                 Intent swap = new Intent(view.getContext(), GameActivity.class);

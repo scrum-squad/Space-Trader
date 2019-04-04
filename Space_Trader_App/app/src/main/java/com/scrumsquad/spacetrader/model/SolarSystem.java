@@ -9,6 +9,10 @@ public class SolarSystem {
     private List<Planet> planets;
     private String name;
 
+    public SolarSystem() {
+
+    }
+
     /**
      * used for only one planet
      * @param xCord x coordinate

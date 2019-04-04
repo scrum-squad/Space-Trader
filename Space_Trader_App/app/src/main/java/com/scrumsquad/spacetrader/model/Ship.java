@@ -9,6 +9,14 @@ public class Ship {
     private int fuel;
     private final int MAX_FUEL;
 
+    public Ship() {
+        Ships type = Ships.GNAT;
+        this.inventory = new ArrayList(type.getCargoCap());
+        this.name = type.toString();
+        this.fuel = type.getFuelCap();
+        this.MAX_FUEL = type.getFuelCap();
+    }
+
     public Ship(Ships type) {
         this.inventory = new ArrayList(type.getCargoCap());
         this.name = type.toString();

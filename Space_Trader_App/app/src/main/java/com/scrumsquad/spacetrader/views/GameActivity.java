@@ -2,7 +2,9 @@ package com.scrumsquad.spacetrader.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,8 +13,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.scrumsquad.spacetrader.R;
 import com.scrumsquad.spacetrader.model.Game;
 import com.scrumsquad.spacetrader.model.Planet;
@@ -21,7 +26,9 @@ import com.scrumsquad.spacetrader.viewModel.GameViewModel;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
@@ -41,6 +48,7 @@ public class GameActivity extends AppCompatActivity {
     private Spinner travelLocations;
     private Button travelButton;
     private Button refuelButton;
+    private Button saveButton;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,11 +63,7 @@ public class GameActivity extends AppCompatActivity {
         travelLocations = findViewById(R.id.travelOptions);
         travelButton = findViewById(R.id.travel_button);
         refuelButton = findViewById(R.id.refuel_button);
-        Game game = Game.getGame();
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("User");
-        myRef.setValue(game);
+        saveButton = findViewById(R.id.save_button);
 
         viewModel = new GameViewModel();
 
@@ -94,6 +98,16 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 viewModel.setTotalFuel(viewModel.getMAX_FUEL());
                 setup(viewModel.getCurrentSystem());
+            }
+        });
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Game game = Game.getGame();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("User");
+                myRef.setValue(game);
             }
         });
 
