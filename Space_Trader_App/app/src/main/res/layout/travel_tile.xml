@@ -82,12 +82,16 @@
         app:layout_constraintLeft_toRightOf="@id/fuelLevel"
         app:layout_constraintTop_toBottomOf="@id/travelOptions" />
 
-    <Button
+    <ImageButton
         android:id="@+id/travel_button"
         style="@style/Widget.AppCompat.Button.Small"
-        android:layout_width="145dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="200dp"
+        android:layout_width="61dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="232dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/travel_button"
         android:text="Travel"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@+id/planetCord"
