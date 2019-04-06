@@ -47,7 +47,7 @@ public class GameActivity extends AppCompatActivity {
     // Interactive Pieces
     private ProgressBar fuelLevel;
     private Spinner travelLocations;
-    private ImageButton travelButton;
+    private Button travelButton;
     private ImageButton refuelButton;
     private ImageButton saveButton;
 
