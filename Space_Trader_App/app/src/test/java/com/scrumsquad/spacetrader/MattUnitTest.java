@@ -37,11 +37,21 @@ public class MattUnitTest extends junit.framework.TestCase {
         List<MarketGoodItem> inventory = new ArrayList<>();
 
         //tests to see if every item is added and done so in the correct order
-        for (int i = 0; i < cargoCap; i++) {
+        for (int i = 0; i < cargoCap - 1; i++) {
             int itemSelector = (int) Math.random()*items.length;
             testShip.addItem(items[itemSelector]);
             inventory.add(items[itemSelector]);
             assertEquals("Item was not added correctly", inventory, testShip.getInventory());
         }
+
+        //tests to make sure null does not add to cargo bay as an item
+        testShip.addItem(null);
+        assertEquals("null should not be an added to cargo bay", cargoCap - 1, testShip.getInventory().size());
+
+        //finishes filling the ship
+        int itemSelector = (int) Math.random()*items.length;
+        testShip.addItem(items[itemSelector]);
+        inventory.add(items[itemSelector]);
+        assertEquals("Item was not added correctly", inventory, testShip.getInventory());
     }
 }

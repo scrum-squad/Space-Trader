@@ -59,8 +59,9 @@ public class Ship {
 //                    return;
 //                }
 //            }
-
-            this.inventory.add(bought);
+            if (bought != null) {
+                this.inventory.add(bought);
+            }
         }
     }
 
