@@ -35,9 +35,13 @@ public class SolarSystem {
      * @param planetNames planet names
      */
     public SolarSystem(int xCord, int yCord, List<String> planetNames) {
+        if (planetNames.size() != 0) {
+            this.name = planetNames.get(0);
+        } else {
+            this.name = "Empty";
+        }
         this.xCord = xCord;
         this.yCord = yCord;
-        this.name = planetNames.get(0);
         makePlanets(planetNames);
     }
 
@@ -46,13 +50,10 @@ public class SolarSystem {
      * @param planetNames the names to be made into planets
      */
     private void makePlanets(List<String> planetNames) {
-        System.out.println("planets: " + planetNames);
         planets = new ArrayList<>(planetNames.size());
         for (int i = 0; i < planetNames.size(); i++) {
-            System.out.println("looped");
             planets.add(new Planet(planetNames.get(i)));
         }
-        System.out.println("planets after: " + planets);
     }
 
     public List<Planet> getPlanets() {
