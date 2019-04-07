@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -35,7 +36,7 @@ public class GameActivity extends AppCompatActivity {
 
     private GameViewModel viewModel;
 
-    private Button enterMarket;
+    private ImageButton enterMarket;
 
     // The following can be copied for the TravelTile
     private TextView planetName;
@@ -47,8 +48,8 @@ public class GameActivity extends AppCompatActivity {
     private ProgressBar fuelLevel;
     private Spinner travelLocations;
     private Button travelButton;
-    private Button refuelButton;
-    private Button saveButton;
+    private ImageButton refuelButton;
+    private ImageButton saveButton;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
