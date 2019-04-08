@@ -1,5 +1,8 @@
 package com.scrumsquad.spacetrader.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum MarketGoodItem {
     WATER(0, 0, 2, 30, 3, 4, "DROUGHT",	"LOTSOFWATER", "DESERT", 30, 50),
     FURS(0, 0, 0, 250, 10, 10, "COLD",	"RICHFAUNA", "LIFELESS", 230, 280),
@@ -74,5 +77,17 @@ public enum MarketGoodItem {
 
     public String getIncreaseEvent() {
         return increaseEvent;
+    }
+
+
+    public static List<MarketGoodItem> validItems(TechLevel techLevel) {
+        List<MarketGoodItem> marketInventory = new ArrayList<MarketGoodItem>();
+        for (MarketGoodItem m : MarketGoodItem.values()) {
+            if (techLevel.getLevel() >= m.getTechLvlMostProduction()){
+                marketInventory.add(m);
+            }
+        }
+
+        return marketInventory;
     }
 }

@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.scrumsquad.spacetrader.model.Game;
 import com.scrumsquad.spacetrader.model.MarketGoodItem;
+import com.scrumsquad.spacetrader.model.TechLevel;
 import com.scrumsquad.spacetrader.viewModel.MarketViewModel;
 
 import com.scrumsquad.spacetrader.R;
@@ -58,13 +59,7 @@ public class MarketActivity extends AppCompatActivity {
     }
 
     public void loadMarket(int limit) {
-        //Run through param data structure and add each item
-        List<MarketGoodItem> marketInventory = new ArrayList<MarketGoodItem>();
-        for (MarketGoodItem m : MarketGoodItem.values()) {
-            if (Game.getGame().getCurrentPlanet().getTechLevel().getLevel() >= m.getTechLvlMostProduction()){
-                marketInventory.add(m);
-            }
-        }
+        List<MarketGoodItem> marketInventory = MarketGoodItem.validItems(Game.getGame().getCurrentPlanet().getTechLevel());
         for (MarketGoodItem m : marketInventory) {
             TableRow added = new TableRow(this);
             TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
@@ -84,5 +79,4 @@ public class MarketActivity extends AppCompatActivity {
     public void clearMarket() {
         marketDisplay.removeAllViewsInLayout();
     }
-
 }
