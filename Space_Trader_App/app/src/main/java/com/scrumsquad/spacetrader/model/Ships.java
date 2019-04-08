@@ -5,17 +5,16 @@ package com.scrumsquad.spacetrader.model;
 public enum Ships {
     GNAT  (15, 14);
 
-
     //These allow us to build the ship.
     // They should stay inside of this ships class
     // Only use them to instantiate
-    private int cargoCap;
+    private final int cargoCap;
     private int hullStrength;
     private int weaponCap;
     private int shieldCap;
     private int gadgetCap;
     private int crewCap;
-    private int fuelCap;
+    private final int fuelCap;
 
     Ships() {
         this.cargoCap = 0;
@@ -33,7 +32,6 @@ public enum Ships {
         name = name.toLowerCase();
         name = name.substring(0, 1).toUpperCase() + name.substring(1);
         return name;
-
     }
 
     // These will be getters for each characteristic

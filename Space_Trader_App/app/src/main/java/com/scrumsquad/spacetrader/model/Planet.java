@@ -1,9 +1,9 @@
 package com.scrumsquad.spacetrader.model;
 
 public class Planet {
-    private TechLevel techLevel;
-    private Resources resources;
-    private String name;
+    private final TechLevel techLevel;
+    private final Resources resources;
+    private final String name;
 
     public Planet() {
         this.name = "";

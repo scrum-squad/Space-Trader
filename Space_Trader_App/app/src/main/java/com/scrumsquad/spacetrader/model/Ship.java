@@ -1,15 +1,14 @@
 package com.scrumsquad.spacetrader.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Ship {
-    private String name;
-    private List<MarketGoodItem> inventory;
+    private final String name;
+    private final List<MarketGoodItem> inventory;
     private int fuel;
     private final int MAX_FUEL;
-    private int itemCap;
+    private final int itemCap;
 
     public Ship() {
         Ships type = Ships.GNAT;

@@ -35,7 +35,7 @@ public class SolarSystem {
      * @param planetNames planet names
      */
     public SolarSystem(int xCord, int yCord, List<String> planetNames) {
-        if (planetNames.size() != 0) {
+        if (planetNames.isEmpty()) {
             this.name = planetNames.get(0);
         } else {
             this.name = "Empty";

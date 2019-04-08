@@ -1,13 +1,5 @@
 package com.scrumsquad.spacetrader.model;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,7 +47,6 @@ public class Game implements Serializable{
         //make the solar systems here
         //each solar system needs to be at a different location
         //maybe a hashmap with the coordinates as the key and the solarSystem as the value
-        System.out.println(solarSystemNames);
 
         // initialize our map and list
         solarSystems = new HashMap<>();
@@ -77,29 +68,9 @@ public class Game implements Serializable{
             }
         }
 
-        System.out.println(solarSystems);
-        System.out.println(solarSystems.get(solarSystemNames.get(0)).getPlanets());
-
         // assign the first planet created to be our starting planet
         player.setCurrentSystem(solarSystems.get(solarSystemNames.get(0)));
         player.setCurrentPlanet(solarSystems.get(solarSystemNames.get(0)).getPlanets().get(0));
-
-        /*
-            FOR NOW WE WILL BE JUST PRINTING OUT THE RESULTS AT THE END OF THIS METHOD
-         */
-        System.out.println("========================");
-        for (int i = 0; i < solarSystemNames.size(); i++) {
-            SolarSystem currSystem = solarSystems.get(solarSystemNames.get(i));
-            List<Planet> currPlanets = currSystem.getPlanets();
-            // for now the only name that matters is the solar system name since each system only has one planet
-            System.out.println("System Name: " + currSystem.getName());
-            System.out.println("Coordinates: " + currSystem.getCoordinates());
-            for (int x = 0; x < currPlanets.size(); x++) {
-                System.out.println("Resources: " + currPlanets.get(x).getResources());
-                System.out.println("Tech Level: " + currPlanets.get(x).getTechLevel());
-            }
-            System.out.println("========================");
-        }
     }
 
     /**

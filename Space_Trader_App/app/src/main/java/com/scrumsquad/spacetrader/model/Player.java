@@ -3,9 +3,9 @@ package com.scrumsquad.spacetrader.model;
 import java.util.List;
 
 public class Player {
-    private String name;
+    private final String name;
     private int credits;
-    private Ship ship;
+    private final Ship ship;
     private List<Skills> skills;
     private SolarSystem currentSystem;
     private Planet currentPlanet;
@@ -14,7 +14,6 @@ public class Player {
         this.name = "";
         this.credits = 0;
         this.ship = new Ship(Ships.GNAT);
-        this.skills = null;
     }
 
     public Player(String name, int credits, Ships ship, List<Skills> skill) {
