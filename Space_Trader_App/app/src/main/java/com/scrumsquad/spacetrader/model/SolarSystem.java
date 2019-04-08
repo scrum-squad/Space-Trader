@@ -1,10 +1,17 @@
 package com.scrumsquad.spacetrader.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SolarSystem {
     private int xCord;
     private int yCord;
-    private Planet[] planets;
+    private List<Planet> planets;
     private String name;
+
+    public SolarSystem() {
+
+    }
 
     /**
      * used for only one planet
@@ -16,7 +23,8 @@ public class SolarSystem {
         this.xCord = xCord;
         this.yCord = yCord;
         this.name = planetName;
-        String[] planetNames = {planetName};
+        List<String> planetNames = new ArrayList<>();
+        planetNames.add(planetName);
         makePlanets(planetNames);
     }
 
@@ -26,10 +34,14 @@ public class SolarSystem {
      * @param yCord y coordinate
      * @param planetNames planet names
      */
-    public SolarSystem(int xCord, int yCord, String[] planetNames) {
+    public SolarSystem(int xCord, int yCord, List<String> planetNames) {
+        if (planetNames.size() != 0) {
+            this.name = planetNames.get(0);
+        } else {
+            this.name = "Empty";
+        }
         this.xCord = xCord;
         this.yCord = yCord;
-        this.name = planetNames[0];
         makePlanets(planetNames);
     }
 
@@ -37,14 +49,14 @@ public class SolarSystem {
      * makes a new random planet for each planet name
      * @param planetNames the names to be made into planets
      */
-    private void makePlanets(String[] planetNames) {
-        planets = new Planet[planetNames.length];
-        for (int i = 0; i < planets.length; i++) {
-            planets[i] = new Planet(planetNames[i]);
+    private void makePlanets(List<String> planetNames) {
+        planets = new ArrayList<>(planetNames.size());
+        for (int i = 0; i < planetNames.size(); i++) {
+            planets.add(new Planet(planetNames.get(i)));
         }
     }
 
-    public Planet[] getPlanets() {
+    public List<Planet> getPlanets() {
         return planets;
     }
 

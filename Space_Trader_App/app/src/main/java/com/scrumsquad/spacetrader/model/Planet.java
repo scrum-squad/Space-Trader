@@ -5,6 +5,12 @@ public class Planet {
     private Resources resources;
     private String name;
 
+    public Planet() {
+        this.name = "";
+        this.techLevel = TechLevel.getRandomTechLevel();
+        this.resources = Resources.getRandomResource();
+    }
+
     /**
      * makes a planet with random tech level and resource level
      * @param name name of the planet

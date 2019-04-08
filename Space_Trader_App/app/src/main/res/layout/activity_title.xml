@@ -11,18 +11,34 @@
         android:layout_height="match_parent"
         android:background="@drawable/space_trader_title_screen_v3"
         android:scaleType="centerInside"
-        />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="29dp" />
 
     <ImageButton
         android:id="@+id/title_start_player_config"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/pixil_start_button"
-        android:layout_marginTop="50dp"
+        android:layout_width="165dp"
+        android:layout_height="81dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="232dp"
         android:background="@null"
+        android:src="@drawable/new_game_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageButton
+        android:id="@+id/title_load_player"
+        android:layout_width="179dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="328dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/load_button_v2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

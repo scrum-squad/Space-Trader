@@ -2,15 +2,23 @@ package com.scrumsquad.spacetrader.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.scrumsquad.spacetrader.R;
 import com.scrumsquad.spacetrader.model.Game;
 import com.scrumsquad.spacetrader.model.Planet;
@@ -19,14 +27,16 @@ import com.scrumsquad.spacetrader.viewModel.GameViewModel;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
 
     private GameViewModel viewModel;
 
-    private Button enterMarket;
+    private ImageButton enterMarket;
 
     // The following can be copied for the TravelTile
     private TextView planetName;
@@ -38,7 +48,8 @@ public class GameActivity extends AppCompatActivity {
     private ProgressBar fuelLevel;
     private Spinner travelLocations;
     private Button travelButton;
-    private Button refuelButton;
+    private ImageButton refuelButton;
+    private ImageButton saveButton;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +64,7 @@ public class GameActivity extends AppCompatActivity {
         travelLocations = findViewById(R.id.travelOptions);
         travelButton = findViewById(R.id.travel_button);
         refuelButton = findViewById(R.id.refuel_button);
+        saveButton = findViewById(R.id.save_button);
 
         viewModel = new GameViewModel();
 
@@ -90,11 +102,21 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Game game = Game.getGame();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("User");
+                myRef.setValue(game);
+            }
+        });
+
         setup(viewModel.getCurrentSystem());
     }
 
     public void setup(SolarSystem system) {
-        Planet planet = system.getPlanets()[0];
+        Planet planet = system.getPlanets().get(0);
         planetName.setText("Planet: " + planet.getName());
         techLevel.setText(planet.getTechLevel().toString());
         coordinates.setText("Coordiates: " + system.getCoordinates());

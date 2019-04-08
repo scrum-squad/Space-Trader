@@ -57,7 +57,7 @@ public class GameViewModel extends ViewModel {
         // Update current system and planet
         // TODO: Select from varying planets, current selects default at index = 0
         player.setCurrentSystem(destination);
-        player.setCurrentPlanet(destination.getPlanets()[0]);
+        player.setCurrentPlanet(destination.getPlanets().get(0));
 
 
         // Update viewModel
