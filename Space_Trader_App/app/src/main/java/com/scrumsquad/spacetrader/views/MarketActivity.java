@@ -58,12 +58,7 @@ public class MarketActivity extends AppCompatActivity {
 
     private void loadMarket(int limit) {
         //Run through param data structure and add each item
-        Collection<MarketGoodItem> marketInventory = new ArrayList<MarketGoodItem>();
-        for (MarketGoodItem m : MarketGoodItem.values()) {
-            if (Game.getGame().getCurrentPlanet().getTechLevel().getLevel() >= m.getTechLvlMostProduction()){
-                marketInventory.add(m);
-            }
-        }
+        Collection<MarketGoodItem> marketInventory = MarketGoodItem.validItems(Game.getGame().getCurrentPlanet().getTechLevel());
         for (MarketGoodItem m : marketInventory) {
             TableRow added = new TableRow(this);
             TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);

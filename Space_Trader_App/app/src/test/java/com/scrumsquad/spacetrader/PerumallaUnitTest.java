@@ -14,36 +14,27 @@ public class PerumallaUnitTest extends junit.framework.TestCase{
      */
     @Test
     public void testValidItems() {
-        System.out.println(MarketGoodItem.validItems(TechLevel.PRE_AGRICULTURE));
-        System.out.println(MarketGoodItem.validItems(TechLevel.AGRICULTURE));
-        System.out.println(MarketGoodItem.validItems(TechLevel.MEDIEVAL));
-        System.out.println(MarketGoodItem.validItems(TechLevel.RENAISSANCE));
-        System.out.println(MarketGoodItem.validItems(TechLevel.EARLY_INDUSTRIAL));
-        System.out.println(MarketGoodItem.validItems(TechLevel.INDUSTRIAL));
-        System.out.println(MarketGoodItem.validItems(TechLevel.POST_INDUSTRIAL));
-        System.out.println(MarketGoodItem.validItems(TechLevel.HI_TECH));
-
         List<MarketGoodItem> list = new ArrayList<MarketGoodItem>();
 
         list.add(MarketGoodItem.FURS);
-        assertEquals(list, MarketGoodItem.validItems(TechLevel.PRE_AGRICULTURE));
+        assertEquals("Pre-Agricultural Tech level has invalid items", list, MarketGoodItem.validItems(TechLevel.PRE_AGRICULTURE));
 
         list.add(MarketGoodItem.FOOD);
-        assertEquals(list, MarketGoodItem.validItems(TechLevel.AGRICULTURE));
+        assertEquals("Agricultural Tech level has invalid items", list, MarketGoodItem.validItems(TechLevel.AGRICULTURE));
 
         list.clear();
         list.add(MarketGoodItem.WATER);
         list.add(MarketGoodItem.FURS);
         list.add(MarketGoodItem.FOOD);
-        assertEquals(list, MarketGoodItem.validItems(TechLevel.MEDIEVAL));
+        assertEquals("Medieval Tech level has invalid items", list, MarketGoodItem.validItems(TechLevel.MEDIEVAL));
 
         list.clear();
         list.add(MarketGoodItem.WATER);
         list.add(MarketGoodItem.FURS);
         list.add(MarketGoodItem.FOOD);
         list.add(MarketGoodItem.ORE);
-        assertEquals(list, MarketGoodItem.validItems(TechLevel.RENAISSANCE));
-        assertEquals(list, MarketGoodItem.validItems(TechLevel.EARLY_INDUSTRIAL));
+        assertEquals("Renaissance Tech level has invalid items", list, MarketGoodItem.validItems(TechLevel.RENAISSANCE));
+        assertEquals("Early-Industrial Tech level has invalid items", list, MarketGoodItem.validItems(TechLevel.EARLY_INDUSTRIAL));
 
         list.clear();
         list.add(MarketGoodItem.WATER);
@@ -53,7 +44,7 @@ public class PerumallaUnitTest extends junit.framework.TestCase{
         list.add(MarketGoodItem.FIREARMS);
         list.add(MarketGoodItem.MACHINES);
         list.add(MarketGoodItem.NARCOTICS);
-        assertEquals(list, MarketGoodItem.validItems(TechLevel.INDUSTRIAL));
+        assertEquals("Industrial Tech level has invalid items", list, MarketGoodItem.validItems(TechLevel.INDUSTRIAL));
 
         list.clear();
         list.add(MarketGoodItem.WATER);
@@ -65,7 +56,7 @@ public class PerumallaUnitTest extends junit.framework.TestCase{
         list.add(MarketGoodItem.MEDICINE);
         list.add(MarketGoodItem.MACHINES);
         list.add(MarketGoodItem.NARCOTICS);
-        assertEquals(list, MarketGoodItem.validItems(TechLevel.POST_INDUSTRIAL));
+        assertEquals("Post-Industrial Tech level has invalid items", list, MarketGoodItem.validItems(TechLevel.POST_INDUSTRIAL));
 
         list.clear();
         list.add(MarketGoodItem.WATER);
@@ -78,6 +69,6 @@ public class PerumallaUnitTest extends junit.framework.TestCase{
         list.add(MarketGoodItem.MACHINES);
         list.add(MarketGoodItem.NARCOTICS);
         list.add(MarketGoodItem.ROBOTS);
-        assertEquals(list, MarketGoodItem.validItems(TechLevel.HI_TECH));
+        assertEquals("Hi-Tech level has invalid items", list, MarketGoodItem.validItems(TechLevel.HI_TECH));
     }
 }
