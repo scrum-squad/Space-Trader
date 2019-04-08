@@ -1,23 +1,17 @@
 package com.scrumsquad.spacetrader.viewModel;
 
-import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.ViewModel;
-import android.support.annotation.NonNull;
 
-import com.scrumsquad.spacetrader.model.Difficulty;
 import com.scrumsquad.spacetrader.model.Game;
 import com.scrumsquad.spacetrader.model.MarketGoodItem;
 import com.scrumsquad.spacetrader.model.Planet;
 import com.scrumsquad.spacetrader.model.Player;
-import com.scrumsquad.spacetrader.model.Ships;
-import com.scrumsquad.spacetrader.model.Skills;
-
-import java.sql.SQLOutput;
 
 public class MarketViewModel extends ViewModel {
 
-    private Player player = Game.getGame().getPlayer();
+    private final Game game = Game.getGame();
+    private final Player player = game.getPlayer();
+    private Planet currentPlanet = game.getCurrentPlanet();
 
     /**
      * Uses the currentPlanet and the item to calculate the real price
@@ -26,7 +20,6 @@ public class MarketViewModel extends ViewModel {
      */
     public int calculatePrice(MarketGoodItem item) {
         // basePrice + IPL * (Planet Tech Level - MTLP) + (basePrice * variance/100)
-        Planet currentPlanet = Game.getGame().getCurrentPlanet();
         // add base price
         int price = item.getBasePrice();
         // add IPL * planet tech - MTLP
@@ -47,14 +40,10 @@ public class MarketViewModel extends ViewModel {
     }
 
     public void buyItem(MarketGoodItem item, int cost) {
-        System.out.println("trying to buy");
-        System.out.println(player.getCredits());
-        System.out.println(player.getShip().canAdd());
-        if( player.getShip().canAdd() && player.getCredits() >= cost) {
+        if(player.getShip().canAdd() && (player.getCredits() >= cost)) {
             // If the player has room and credits for the item
             player.getShip().addItem(item);
             player.setCredits(player.getCredits() - cost);
-            System.out.println("Bought " + item.name());
         }
     }
     public void sellItem(MarketGoodItem item, int value) {

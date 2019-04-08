@@ -2,9 +2,7 @@ package com.scrumsquad.spacetrader.views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,22 +12,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.scrumsquad.spacetrader.R;
 import com.scrumsquad.spacetrader.model.Game;
 import com.scrumsquad.spacetrader.model.Planet;
 import com.scrumsquad.spacetrader.model.SolarSystem;
 import com.scrumsquad.spacetrader.viewModel.GameViewModel;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
@@ -51,6 +41,7 @@ public class GameActivity extends AppCompatActivity {
     private ImageButton refuelButton;
     private ImageButton saveButton;
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
@@ -69,6 +60,7 @@ public class GameActivity extends AppCompatActivity {
         viewModel = new GameViewModel();
 
         enterMarket.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 Intent swapMarket = new Intent (view.getContext(), MarketActivity.class);
                 startActivity(swapMarket);
@@ -79,6 +71,7 @@ public class GameActivity extends AppCompatActivity {
         //travelLocations.setSelection(viewModel.);
 
         travelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 SolarSystem destination = (SolarSystem) travelLocations.getSelectedItem();
                 viewModel.travelToDestination(destination);
@@ -115,13 +108,13 @@ public class GameActivity extends AppCompatActivity {
         setup(viewModel.getCurrentSystem());
     }
 
-    public void setup(SolarSystem system) {
+    private void setup(SolarSystem system) {
         Planet planet = system.getPlanets().get(0);
         planetName.setText("Planet: " + planet.getName());
         techLevel.setText(planet.getTechLevel().toString());
         coordinates.setText("Coordiates: " + system.getCoordinates());
         resourceLevel.setText(planet.getResources().toString());
-        fuelLevel.setProgress(100 * viewModel.getTotalFuel() / viewModel.getMAX_FUEL());
+        fuelLevel.setProgress((viewModel.getTotalFuel() / viewModel.getMAX_FUEL()) * 100);
 
         ArrayAdapter<SolarSystem> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
                 viewModel.getPossibleDestinations());

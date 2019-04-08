@@ -1,21 +1,17 @@
 package com.scrumsquad.spacetrader.viewModel;
 
 import android.arch.lifecycle.ViewModel;
-import android.widget.Toast;
 
 import com.scrumsquad.spacetrader.model.Game;
 import com.scrumsquad.spacetrader.model.Player;
 import com.scrumsquad.spacetrader.model.SolarSystem;
-import com.scrumsquad.spacetrader.views.GameActivity;
-import com.scrumsquad.spacetrader.views.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class GameViewModel extends ViewModel {
 
-    private Player player = Game.getGame().getPlayer();
+    private final Player player = Game.getGame().getPlayer();
     private int totalFuel = player.getShip().getCurrentFuel();
     private int MAX_FUEL = player.getShip().getMAX_FUEL();
     private SolarSystem currentSystem = player.getCurrentSystem();
@@ -32,7 +28,7 @@ public class GameViewModel extends ViewModel {
     }
 
     public List<SolarSystem> getPossibleDestinations() {
-        List<SolarSystem> systems = new ArrayList<>(Game.getGame().getSolarSystems().values());
+        Iterable<SolarSystem> systems = new ArrayList<>(Game.getGame().getSolarSystems().values());
         List<SolarSystem> destinations = new ArrayList<>();
 
         for (SolarSystem system : systems) {
@@ -40,7 +36,7 @@ public class GameViewModel extends ViewModel {
                 int dist = distanceTo(system);
                 int fuelUsed = dist / distPerFuel;
 
-                if (totalFuel - fuelUsed >= 0) {
+                if ((totalFuel - fuelUsed) >= 0) {
                     destinations.add(system);
                 }
             }

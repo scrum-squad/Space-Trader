@@ -1,12 +1,10 @@
 package com.scrumsquad.spacetrader.views;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.firebase.database.DataSnapshot;
@@ -48,8 +46,6 @@ public class TitleActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Game myGame = dataSnapshot.getValue(Game.class);
                         Game.makeGame(myGame);
-                        System.out.println(Game.getGame());
-                        System.out.println("game created");
                         Intent startIntent = new Intent(getApplicationContext(), GameActivity.class);
                         startActivity(startIntent);
                     }
