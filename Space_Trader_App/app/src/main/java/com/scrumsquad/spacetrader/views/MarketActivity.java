@@ -1,15 +1,12 @@
+
 package com.scrumsquad.spacetrader.views;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -22,7 +19,7 @@ import com.scrumsquad.spacetrader.viewModel.MarketViewModel;
 import com.scrumsquad.spacetrader.R;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class MarketActivity extends AppCompatActivity {
 
@@ -31,8 +28,9 @@ public class MarketActivity extends AppCompatActivity {
     private Button leaveMarket;
     private ScrollView scrollView;
     private TableLayout marketDisplay;
-    public TextView startingCredits;
+    private TextView startingCredits;
 
+    @Override
     public void onCreate(Bundle instanceSaved) {
         super.onCreate(instanceSaved);
         setContentView(R.layout.activity_marketplace);
@@ -41,7 +39,7 @@ public class MarketActivity extends AppCompatActivity {
 
         scrollView = findViewById(R.id.market_scroll);
         marketDisplay = findViewById(R.id.market_display);
-        startingCredits = (TextView) findViewById(R.id.market_display_funds);
+        startingCredits = findViewById(R.id.market_display_funds);
         startingCredits.setText("Your Credits: " + viewModel.playerCredits());
 
         //Debug tool: Test functionality of loading the market place
@@ -49,6 +47,7 @@ public class MarketActivity extends AppCompatActivity {
 
         leaveMarket = findViewById(R.id.market_leave_button);
         leaveMarket.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 clearMarket();
                 Intent gotoMain = new Intent(view.getContext(), GameActivity.class);
@@ -57,14 +56,9 @@ public class MarketActivity extends AppCompatActivity {
         });
     }
 
-    public void loadMarket(int limit) {
+    private void loadMarket(int limit) {
         //Run through param data structure and add each item
-        List<MarketGoodItem> marketInventory = new ArrayList<MarketGoodItem>();
-        for (MarketGoodItem m : MarketGoodItem.values()) {
-            if (Game.getGame().getCurrentPlanet().getTechLevel().getLevel() >= m.getTechLvlMostProduction()){
-                marketInventory.add(m);
-            }
-        }
+        Collection<MarketGoodItem> marketInventory = MarketGoodItem.validItems(Game.getGame().getCurrentPlanet().getTechLevel());
         for (MarketGoodItem m : marketInventory) {
             TableRow added = new TableRow(this);
             TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
@@ -73,7 +67,6 @@ public class MarketActivity extends AppCompatActivity {
             //Create new ItemView object
             ItemView item = new ItemView(this.getApplicationContext());
             //Loads data
-            System.out.println(viewModel.amountOwned(m));
             item.load(m, viewModel.calculatePrice(m), viewModel.amountOwned(m), startingCredits);
 
             added.addView(item);
@@ -81,8 +74,7 @@ public class MarketActivity extends AppCompatActivity {
         }
     }
 
-    public void clearMarket() {
+    private void clearMarket() {
         marketDisplay.removeAllViewsInLayout();
     }
-
 }

@@ -1,5 +1,8 @@
 package com.scrumsquad.spacetrader.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum MarketGoodItem {
     WATER(0, 0, 2, 30, 3, 4, "DROUGHT",	"LOTSOFWATER", "DESERT", 30, 50),
     FURS(0, 0, 0, 250, 10, 10, "COLD",	"RICHFAUNA", "LIFELESS", 230, 280),
@@ -12,9 +15,17 @@ public enum MarketGoodItem {
     NARCOTICS(5, 0, 5, 3500, -125, 150, "BOREDOME",	"WEIRDMUSHROOMS", "never", 2000, 3000),
     ROBOTS(6, 4, 7, 5000, -150, 100, "LACKOFWORKERS", "never", "never", 3500, 5000);
 
-    private int minTechProduce, minTechUse, techLvlMostProduction, basePrice, priceIncrease,
-            variability, minPriceOffPlanet, maxPriceOffPlanet;
-    private String increaseEvent, conditionReduce, conditionExpensive;
+    private final int minTechProduce;
+    private final int minTechUse;
+    private final int techLvlMostProduction;
+    private final int basePrice;
+    private final int priceIncrease;
+    private final int variability;
+    private final int minPriceOffPlanet;
+    private final int maxPriceOffPlanet;
+    private final String increaseEvent;
+    private final String conditionReduce;
+    private final String conditionExpensive;
 
     MarketGoodItem(int minTechProduce, int minTechUse, int techLvlMostProduction, int basePrice,
                           int priceIncrease, int variability, String increaseEvent,	String conditionReduce,
@@ -74,5 +85,17 @@ public enum MarketGoodItem {
 
     public String getIncreaseEvent() {
         return increaseEvent;
+    }
+
+
+    public static List<MarketGoodItem> validItems(TechLevel techLevel) {
+        List<MarketGoodItem> marketInventory = new ArrayList<MarketGoodItem>();
+        for (MarketGoodItem m : MarketGoodItem.values()) {
+            if (techLevel.getLevel() >= m.getTechLvlMostProduction()){
+                marketInventory.add(m);
+            }
+        }
+
+        return marketInventory;
     }
 }

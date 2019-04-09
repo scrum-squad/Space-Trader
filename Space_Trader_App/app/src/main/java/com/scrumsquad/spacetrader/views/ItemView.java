@@ -1,9 +1,7 @@
 package com.scrumsquad.spacetrader.views;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.view.LayoutInflater;
 import android.widget.Button;
@@ -23,7 +21,7 @@ public class ItemView extends LinearLayout {
     private Button bBuy;
     private Button bSell;
 
-    private MarketViewModel viewModel = new MarketViewModel();
+    private final MarketViewModel viewModel = new MarketViewModel();
 
     public ItemView(Context context) {
         super(context);
@@ -55,8 +53,8 @@ public class ItemView extends LinearLayout {
         price.setText("$" + cost);
         amountOwn.setText("Owned: " + owned);
         bBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
-                System.out.println(name.getText().toString());
                 viewModel.buyItem(m, cost);
                 amountOwn.setText("Owned: " + viewModel.amountOwned(m));
                 // Take name, price, and value from amountSelect
@@ -65,6 +63,7 @@ public class ItemView extends LinearLayout {
             }
         });
         bSell.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 viewModel.sellItem(m, cost);
                 //Here I am assuming that the cost of a good to sell is == to the cost to buy

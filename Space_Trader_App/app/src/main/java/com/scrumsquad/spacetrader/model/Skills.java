@@ -8,7 +8,7 @@ public enum Skills {
 
     private int level;
 
-    private String name;
+    private final String name;
 
     Skills(String name) {
         this.level = 0;

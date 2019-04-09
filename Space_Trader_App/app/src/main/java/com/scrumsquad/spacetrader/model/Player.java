@@ -1,13 +1,22 @@
 package com.scrumsquad.spacetrader.model;
 
+import java.util.List;
+
 public class Player {
-    private String name;
+    private final String name;
     private int credits;
-    private Ship ship;
-    private Skills[] skills;
+    private final Ship ship;
+    private List<Skills> skills;
+    private SolarSystem currentSystem;
     private Planet currentPlanet;
 
-    public Player(String name, int credits, Ships ship, Skills[] skill) {
+    public Player() {
+        this.name = "";
+        this.credits = 0;
+        this.ship = new Ship(Ships.GNAT);
+    }
+
+    public Player(String name, int credits, Ships ship, List<Skills> skill) {
         this.name = name;
         this.credits = credits;
         this.ship = new Ship(ship);
@@ -36,5 +45,13 @@ public class Player {
 
     public void setCurrentPlanet(Planet planet) {
         currentPlanet = planet;
+    }
+
+    public SolarSystem getCurrentSystem() {
+        return currentSystem;
+    }
+
+    public void setCurrentSystem(SolarSystem currentSystem) {
+        this.currentSystem = currentSystem;
     }
 }

@@ -1,17 +1,24 @@
 package com.scrumsquad.spacetrader.model;
 
 public class Planet {
-    private TechLevel techLevel;
-    private Resources resources;
-    private String name;
+    private final TechLevel techLevel;
+    private final Resources resources;
+    private final String name;
+
+    public Planet() {
+        this.name = "";
+        this.techLevel = TechLevel.getRandomTechLevel();
+        this.resources = Resources.getRandomResource();
+    }
 
     /**
      * makes a planet with random tech level and resource level
      * @param name name of the planet
      */
     public Planet(String name) {
-        techLevel = TechLevel.getRandomTechLevel();
-        resources = Resources.getRandomResource();
+        this.name = name;
+        this.techLevel = TechLevel.getRandomTechLevel();
+        this.resources = Resources.getRandomResource();
     }
 
     /**

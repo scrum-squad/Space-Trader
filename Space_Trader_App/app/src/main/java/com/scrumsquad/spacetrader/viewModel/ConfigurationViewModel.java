@@ -1,19 +1,16 @@
 package com.scrumsquad.spacetrader.viewModel;
 
-import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.ViewModel;
-import android.content.Intent;
-import android.support.annotation.NonNull;
 
 import com.scrumsquad.spacetrader.model.Difficulty;
 import com.scrumsquad.spacetrader.model.Game;
 import com.scrumsquad.spacetrader.model.Player;
 import com.scrumsquad.spacetrader.model.Ships;
 import com.scrumsquad.spacetrader.model.Skills;
-import com.scrumsquad.spacetrader.views.GameActivity;
 
-import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ConfigurationViewModel extends ViewModel {
 
@@ -23,7 +20,7 @@ public class ConfigurationViewModel extends ViewModel {
     private final int SKILL_POINTS = 16;
 
     // Things associated with the player char
-    private Skills[] playerSkills = Skills.values();
+    private final List<Skills> playerSkills = new ArrayList(Arrays.asList(Skills.values()));
     private String playerName;
     private Game currentGame;
     private Difficulty diff = Difficulty.Normal;
@@ -31,29 +28,19 @@ public class ConfigurationViewModel extends ViewModel {
 
     public void incrementSkill(Skills skill){
         int ind = skill.ordinal();
-        playerSkills[ind].updateLevel(playerSkills[ind].getLevel() + 1);
+        playerSkills.get(ind).updateLevel(playerSkills.get(ind).getLevel() + 1);
     }
     public void decrementSkill(Skills skill) {
         int ind = skill.ordinal();
-        playerSkills[ind].updateLevel(playerSkills[ind].getLevel() - 1);
+        playerSkills.get(ind).updateLevel(playerSkills.get(ind).getLevel() - 1);
     }
 
     public void generateCharacter() {
         Player player1 = new Player(playerName, STARTING_CREDITS, STARTING_SHIP, playerSkills);
-        String[] planetNames = {"Acamar", "Adahn", "Aldea", "Andevian", "Antedi", "Balosnee", "Baratas", "Brax", "Bretel", "Calondia",
+        String[] planetNamess = {"Acamar", "Adahn", "Aldea", "Andevian", "Antedi", "Balosnee", "Baratas", "Brax", "Bretel", "Calondia",
                 "Campor", "Capelle", "Carzon", "Castor", "Cestus", "Cheron", "Courteney", "Daled", "Damast", "Janus", "Japori"};
+        List<String> planetNames = new ArrayList<>(Arrays.asList(planetNamess));
         Game.makeGame(player1, diff, planetNames);
-        generatorPrint();
-    }
-
-    public void generatorPrint() {
-        System.out.println("Player Name: " + playerName);
-        System.out.println("Credits: " + STARTING_CREDITS);
-        System.out.println("Ship: " + STARTING_SHIP.toString());
-        for (Skills skill: playerSkills) {
-            System.out.println(skill.name() + ": " + skill.getLevel());
-        }
-        System.out.println("Difficulty: " + diff.name());
     }
 
     public int remainingSkillPoints() {
@@ -66,7 +53,7 @@ public class ConfigurationViewModel extends ViewModel {
 
 
     public int getSkillLevel(int ind) {
-        return playerSkills[ind].getLevel();
+        return playerSkills.get(ind).getLevel();
     }
 
     public void setDiff(Difficulty diff) {

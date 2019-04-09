@@ -13,8 +13,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.scrumsquad.spacetrader.R;
 import com.scrumsquad.spacetrader.model.Difficulty;
+import com.scrumsquad.spacetrader.model.Game;
 import com.scrumsquad.spacetrader.model.Player;
 import com.scrumsquad.spacetrader.model.Skills;
 import com.scrumsquad.spacetrader.viewModel.ConfigurationViewModel;
@@ -50,6 +53,7 @@ public class ConfigurationActivity extends AppCompatActivity{
     private final String PLAYER_KEY = "Player";
     private final String DIFFICULTY_KEY = "Difficulty";
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuration);
@@ -61,7 +65,6 @@ public class ConfigurationActivity extends AppCompatActivity{
         playerName = findViewById(R.id.player_name_input);
         startGame = findViewById(R.id.player_startGame);
         difSpinner = findViewById(R.id.spinner_difficulty_config);
-
 
         ArrayAdapter<Difficulty> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
                 Arrays.asList(Difficulty.values()));
@@ -77,26 +80,33 @@ public class ConfigurationActivity extends AppCompatActivity{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!(playerName.getText().toString().equals(""))) {
+                if (!("").equals(playerName.getText().toString())) {
                     startGame.setClickable(true);
                 }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (playerName.getText().toString().equals("")) {
+                if (("").equals(playerName.getText().toString())) {
                     startGame.setClickable(false);
                 }
             }
         });
 
         startGame.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 viewModel.setName(playerName.getText().toString());
                 viewModel.setDiff((Difficulty) difSpinner.getSelectedItem());
 
                 // THIS CREATES THE PLAYER AND THE UNIVERSE
                 viewModel.generateCharacter();
+
+                // saves game to firebase
+                Game game = Game.getGame();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("User");
+                myRef.setValue(game);
 
                 //Post Generation: Opens main game screen
                 Intent swap = new Intent(view.getContext(), GameActivity.class);
@@ -112,9 +122,7 @@ public class ConfigurationActivity extends AppCompatActivity{
             int pressedId = v.getId();
             //I think that this should be changed to something less hardcoded but idk how
             // find which button was pressed
-            System.out.println(pressedId);
             if (pressedId == R.id.player_pilot_plus) {
-                System.out.println("Inc Pilot" + Skills.Pilot.name());
                 viewModel.incrementSkill(Skills.Pilot);
             } else if (pressedId == R.id.player_trader_plus) {
                 viewModel.incrementSkill(Skills.Trader);
@@ -139,7 +147,7 @@ public class ConfigurationActivity extends AppCompatActivity{
 
     }
 
-    public void createButtonArray() {
+    private void createButtonArray() {
         plusButtons = new Button[NUM_PLUS_BUTTONS];
         // I could add the buttons a different way but this is easiest for me to visualize
 
@@ -165,10 +173,10 @@ public class ConfigurationActivity extends AppCompatActivity{
     private void updateSkillLabels() {
         // This can definitely be more modular if we can figure out how to set these dang buttons
         // Might be worth looking more into resources
-        pilotLabel = (TextView) findViewById(R.id.player_display_pilot);
-        traderLabel = (TextView) findViewById(R.id.player_display_trader);
-        engineerLabel = (TextView) findViewById(R.id.player_display_engineer);
-        fighterLabel = (TextView) findViewById(R.id.player_display_fighter);
+        pilotLabel = findViewById(R.id.player_display_pilot);
+        traderLabel = findViewById(R.id.player_display_trader);
+        engineerLabel = findViewById(R.id.player_display_engineer);
+        fighterLabel = findViewById(R.id.player_display_fighter);
         pilotLabel.setText(viewModel.getSkillLevel(0) + "");
         traderLabel.setText(viewModel.getSkillLevel(2) + "");
         engineerLabel.setText(viewModel.getSkillLevel(3) + "");
@@ -189,7 +197,7 @@ public class ConfigurationActivity extends AppCompatActivity{
         }
     }
     private void updateRemainingSkillPoints() {
-        remainingSkillPoints = (TextView) findViewById(R.id.player_total_skill_points);
+        remainingSkillPoints = findViewById(R.id.player_total_skill_points);
         int skillPointsLeft = viewModel.remainingSkillPoints();
         remainingSkillPoints.setText(skillPointsLeft + " Points Left");
         if (skillPointsLeft == 0) {
@@ -201,7 +209,7 @@ public class ConfigurationActivity extends AppCompatActivity{
     }
 
     private void checkNameInput() {
-        if (playerName.getText().toString().equals("")) {
+        if (("").equals(playerName.getText().toString())) {
             startGame.setClickable(false);
         }
     }
