@@ -22,7 +22,7 @@ public class Planet {
     }
 
     /**
-     * makes a planet with name, chosen techlevel, and chose resource
+     * makes a planet with name, chosen techLevel, and chose resource
      * @param name name of the planet
      * @param techLevel tech level
      * @param resources resource

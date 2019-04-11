@@ -37,9 +37,9 @@ public class ConfigurationViewModel extends ViewModel {
 
     public void generateCharacter() {
         Player player1 = new Player(playerName, STARTING_CREDITS, STARTING_SHIP, playerSkills);
-        String[] planetNamess = {"Acamar", "Adahn", "Aldea", "Andevian", "Antedi", "Balosnee", "Baratas", "Brax", "Bretel", "Calondia",
+        String[] planetNamesArray = {"Acamar", "Adahn", "Aldea", "Andevian", "Antedi", "Balosnee", "Baratas", "Brax", "Bretel", "Calondia",
                 "Campor", "Capelle", "Carzon", "Castor", "Cestus", "Cheron", "Courteney", "Daled", "Damast", "Janus", "Japori"};
-        List<String> planetNames = new ArrayList<>(Arrays.asList(planetNamess));
+        List<String> planetNames = new ArrayList<>(Arrays.asList(planetNamesArray));
         Game.makeGame(player1, diff, planetNames);
     }
 

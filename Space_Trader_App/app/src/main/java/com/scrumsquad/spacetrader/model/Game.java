@@ -12,7 +12,7 @@ public class Game implements Serializable{
     private Player player;
     private Difficulty diff;
 
-    // hashmap has the solar system coordinates (key) and the system itself (value)
+    // hashMap has the solar system coordinates (key) and the system itself (value)
     private HashMap<String, SolarSystem> solarSystems;
     private ArrayList<String> coordinatesUsed;
 
@@ -46,7 +46,7 @@ public class Game implements Serializable{
     private void makeSolarSystems(List<String> solarSystemNames) {
         //make the solar systems here
         //each solar system needs to be at a different location
-        //maybe a hashmap with the coordinates as the key and the solarSystem as the value
+        //maybe a hashMap with the coordinates as the key and the solarSystem as the value
 
         // initialize our map and list
         solarSystems = new HashMap<>();
@@ -56,14 +56,14 @@ public class Game implements Serializable{
         int index = 0;
         while (index < solarSystemNames.size()) {
             // makes a random coordinate with x between 0 and 150, y between 0 and 100 (based on M6 file)
-            int xCoord = (int) (Math.random() * 151);
-            int yCoord = (int) (Math.random() * 101);
-            String coordinates = "(" + xCoord + "," + yCoord + ")";
+            int xCoordinate = (int) (Math.random() * 151);
+            int yCoordinate = (int) (Math.random() * 101);
+            String coordinates = "(" + xCoordinate + "," + yCoordinate + ")";
 
             // only proceed if coordinates haven't been used, otherwise index will not get updated so you try again
             if (!coordinatesUsed.contains(coordinates)) {
                 coordinatesUsed.add(coordinates);
-                solarSystems.put(solarSystemNames.get(index), new SolarSystem(xCoord, yCoord, solarSystemNames.get(index)));
+                solarSystems.put(solarSystemNames.get(index), new SolarSystem(xCoordinate, yCoordinate, solarSystemNames.get(index)));
                 index++;
             }
         }
@@ -106,7 +106,7 @@ public class Game implements Serializable{
         this.player = player1;
     }
 
-    public void setCoords(ArrayList coordinatesUsed) {
+    public void setCoordinates(ArrayList coordinatesUsed) {
         this.coordinatesUsed = coordinatesUsed;
     }
 

@@ -3,6 +3,7 @@ package com.scrumsquad.spacetrader.model;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class SolarSystem {
     private int xCord;
     private int yCord;

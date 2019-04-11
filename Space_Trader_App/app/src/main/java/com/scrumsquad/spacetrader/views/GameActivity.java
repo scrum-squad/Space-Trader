@@ -112,7 +112,7 @@ public class GameActivity extends AppCompatActivity {
         Planet planet = system.getPlanets().get(0);
         planetName.setText("Planet: " + planet.getName());
         techLevel.setText(planet.getTechLevel().toString());
-        coordinates.setText("Coordiates: " + system.getCoordinates());
+        coordinates.setText("Coordinates: " + system.getCoordinates());
         resourceLevel.setText(planet.getResources().toString());
         fuelLevel.setProgress((viewModel.getTotalFuel() / viewModel.getMAX_FUEL()) * 100);
 

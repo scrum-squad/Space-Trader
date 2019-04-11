@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PerumallaUnitTest extends junit.framework.TestCase{
     /*
-        testing the validitem method in the marketgood enum
+        testing the validItem method in the marketGood enum
      */
     @Test
     public void testValidItems() {
