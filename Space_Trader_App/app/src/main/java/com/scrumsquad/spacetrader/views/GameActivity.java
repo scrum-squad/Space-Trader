@@ -26,36 +26,30 @@ public class GameActivity extends AppCompatActivity {
 
     private GameViewModel viewModel;
 
-    private ImageButton enterMarket;
-
     // The following can be copied for the TravelTile
     private TextView planetName;
     private TextView techLevel;
     private TextView coordinates;
     private TextView resourceLevel;
-    private TextView travelText;
     // Interactive Pieces
     private ProgressBar fuelLevel;
     private Spinner travelLocations;
-    private Button travelButton;
-    private ImageButton refuelButton;
-    private ImageButton saveButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        enterMarket = findViewById(R.id.game_goto_market);
+        ImageButton enterMarket = findViewById(R.id.game_goto_market);
         planetName = findViewById(R.id.planetName);
         techLevel = findViewById(R.id.planetTech);
         coordinates = findViewById(R.id.planetCord);
         resourceLevel = findViewById(R.id.planetResource);
-        travelText = findViewById(R.id.travelLabel);
+        TextView travelText = findViewById(R.id.travelLabel);
         fuelLevel = findViewById(R.id.fuelProgress);
         travelLocations = findViewById(R.id.travelOptions);
-        travelButton = findViewById(R.id.travel_button);
-        refuelButton = findViewById(R.id.refuel_button);
-        saveButton = findViewById(R.id.save_button);
+        Button travelButton = findViewById(R.id.travel_button);
+        ImageButton refuelButton = findViewById(R.id.refuel_button);
+        ImageButton saveButton = findViewById(R.id.save_button);
 
         viewModel = new GameViewModel();
 

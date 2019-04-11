@@ -21,12 +21,11 @@ import com.scrumsquad.spacetrader.R;
 import java.util.ArrayList;
 import java.util.Collection;
 
+@SuppressWarnings("SameParameterValue")
 public class MarketActivity extends AppCompatActivity {
 
     private MarketViewModel viewModel;
 
-    private Button leaveMarket;
-    private ScrollView scrollView;
     private TableLayout marketDisplay;
     private TextView startingCredits;
 
@@ -37,7 +36,7 @@ public class MarketActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(MarketViewModel.class);
 
 
-        scrollView = findViewById(R.id.market_scroll);
+        ScrollView scrollView = findViewById(R.id.market_scroll);
         marketDisplay = findViewById(R.id.market_display);
         startingCredits = findViewById(R.id.market_display_funds);
         startingCredits.setText("Your Credits: " + viewModel.playerCredits());
@@ -45,7 +44,7 @@ public class MarketActivity extends AppCompatActivity {
         //Debug tool: Test functionality of loading the market place
         loadMarket(3);
 
-        leaveMarket = findViewById(R.id.market_leave_button);
+        Button leaveMarket = findViewById(R.id.market_leave_button);
         leaveMarket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,7 +64,7 @@ public class MarketActivity extends AppCompatActivity {
             added.setLayoutParams(lp);
 
             //Create new ItemView object
-            ItemView item = new ItemView(this.getApplicationContext());
+            ItemView item = new ItemView(getApplicationContext());
             //Loads data
             item.load(m, viewModel.calculatePrice(m), viewModel.amountOwned(m), startingCredits);
 

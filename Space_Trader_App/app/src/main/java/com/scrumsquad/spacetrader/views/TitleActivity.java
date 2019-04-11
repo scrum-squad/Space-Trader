@@ -16,6 +16,7 @@ import com.scrumsquad.spacetrader.R;
 import com.scrumsquad.spacetrader.model.Game;
 import com.scrumsquad.spacetrader.views.ConfigurationActivity;
 
+@SuppressWarnings("unused")
 public class TitleActivity extends AppCompatActivity {
 
     @Override
@@ -38,8 +39,6 @@ public class TitleActivity extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("User");
-
-                DatabaseReference defaultRef = database.getReference();
                 myRef.addValueEventListener(new ValueEventListener() {
 
                     @Override

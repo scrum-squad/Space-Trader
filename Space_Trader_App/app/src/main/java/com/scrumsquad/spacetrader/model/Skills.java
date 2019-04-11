@@ -11,7 +11,7 @@ public enum Skills {
     private final String name;
 
     Skills(String name) {
-        this.level = 0;
+        level = 0;
         this.name = name;
     }
 
@@ -24,7 +24,7 @@ public enum Skills {
     }
 
     public String toString() {
-        return  this.name;
+        return name;
     }
     
 }

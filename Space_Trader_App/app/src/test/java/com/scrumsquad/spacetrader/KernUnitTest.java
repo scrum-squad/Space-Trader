@@ -6,6 +6,7 @@ import com.scrumsquad.spacetrader.model.Planet;
 import com.scrumsquad.spacetrader.model.Player;
 import com.scrumsquad.spacetrader.model.SolarSystem;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.lang.reflect.Array;
@@ -15,12 +16,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-public class KernUnitTest extends junit.framework.TestCase {
+public class KernUnitTest {
     private HashMap<String, SolarSystem> solarSystems;
-    private ArrayList<String> coordinatesUsed = new ArrayList<>();
-    private Game game;
-    private Player dummyPlayer = new Player();
-    private Difficulty diff = Difficulty.Easy;
+    private final ArrayList<String> coordinatesUsed = new ArrayList<>();
+    private final Player dummyPlayer = new Player();
+    private final Difficulty diff = Difficulty.Easy;
 
     /**
      * Testing the makeSolarSystems method
@@ -33,15 +33,15 @@ public class KernUnitTest extends junit.framework.TestCase {
                 "Cestus", "Cheron", "Courteney", "Daled", "Damast", "Davlos", "Deneb"};
 
         ArrayList<String> chosenSystems = new ArrayList<>();
-        for (int i = 0; i < solarSystemNames.length; i++) {
+        for (String solarSystemName : solarSystemNames) {
             int shouldAdd = (int) (Math.random() * 2);
             if (shouldAdd == 1) {
-                chosenSystems.add(solarSystemNames[i]);
+                chosenSystems.add(solarSystemName);
             }
         }
 
         Game.makeGame(dummyPlayer, diff, chosenSystems);
-        game = Game.getGame();
+        Game game = Game.getGame();
         HashMap<String, SolarSystem> generatedSystemsHashMap = game.getSolarSystems();
         Collection<SolarSystem> systemsGenerated = generatedSystemsHashMap.values();
         ArrayList<String> systemNames = new ArrayList<>();
@@ -52,18 +52,15 @@ public class KernUnitTest extends junit.framework.TestCase {
         }
 
         for (int i = 0; i < chosenSystems.size(); i++) {
-            assertTrue("Solar System has too many or too few planets",
+            Assert.assertTrue("Solar System has too many or too few planets",
                     systemNames.contains(chosenSystems.get(i)));
-            assertTrue("System coordinates have already been used",
+            Assert.assertTrue("System coordinates have already been used",
                     !(coordinatesUsed.contains(solarSystemList.get(i).getCoordinates())));
             coordinatesUsed.add(solarSystemList.get(i).getCoordinates());
         }
 
-        /**
-         * Empty solar system list edge case
-         */
+        //Empty solar system list edge case
         ArrayList<String> emptySystems = new ArrayList<>();
-        assertTrue("Cannot generate a game with no systems",
-                emptySystems.size() == 0);
+        Assert.assertEquals("Cannot generate a game with no systems", 0, emptySystems.size());
     }
 }

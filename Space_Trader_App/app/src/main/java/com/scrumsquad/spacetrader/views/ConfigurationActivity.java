@@ -51,7 +51,7 @@ public class ConfigurationActivity extends AppCompatActivity{
 
     // these are the key values for passing player data and difficulty data at the end
     private final String PLAYER_KEY = "Player";
-    private final String DIFFICULTY_KEY = "Difficulty";
+    // --Commented out by Inspection (4/11/19, 7:18 PM):private final String DIFFICULTY_KEY = "Difficulty";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,17 +156,17 @@ public class ConfigurationActivity extends AppCompatActivity{
         plusButtons[1] = findViewById(R.id.player_trader_plus);
         plusButtons[2] = findViewById(R.id.player_engineer_plus);
         plusButtons[3] = findViewById(R.id.player_fighter_plus);
-        for (int i = 0; i < plusButtons.length; i++) {
-            plusButtons[i].setOnClickListener(new ButtonClickListener());
+        for (Button plusButton : plusButtons) {
+            plusButton.setOnClickListener(new ButtonClickListener());
         }
         minusButtons = new Button[NUM_MINUS_BUTTONS];
         minusButtons[0] = findViewById(R.id.player_pilot_minus);
         minusButtons[1] = findViewById(R.id.player_trader_minus);
         minusButtons[2] = findViewById(R.id.player_engineer_minus);
         minusButtons[3] = findViewById(R.id.player_fighter_minus);
-        for (int i = 0; i < minusButtons.length; i++) {
-            minusButtons[i].setOnClickListener(new ButtonClickListener());
-            minusButtons[i].setClickable(false);
+        for (Button minusButton : minusButtons) {
+            minusButton.setOnClickListener(new ButtonClickListener());
+            minusButton.setClickable(false);
         }
     }
 

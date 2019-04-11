@@ -3,14 +3,14 @@ package com.scrumsquad.spacetrader;
 import com.scrumsquad.spacetrader.model.Planet;
 import com.scrumsquad.spacetrader.model.SolarSystem;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class KeohaneUnitTest extends junit.framework.TestCase{
-    private SolarSystem mySolarSystem;
+public class KeohaneUnitTest{
 
     @Test(timeout = 200)
     public void testMakePlanets() {
@@ -25,14 +25,15 @@ public class KeohaneUnitTest extends junit.framework.TestCase{
                 "Campor", "Capelle", "Carzon", "Castor", "Cestus", "Cheron", "Courteney", "Daled", "Damast", "Janus", "Japori"};
 
         // this test will iterate 100 times, each time should be unique
+        SolarSystem mySolarSystem;
         for (int x = 0; x < 10000; x++) {
             ArrayList<String> chosenNames = new ArrayList<>();
 
-            for (int i = 0; i < planetNames.length; i++) {
+            for (String planetName : planetNames) {
                 // 50-50 shot of the name being added
                 int shouldAdd = (int) (Math.random() * 2);
                 if (shouldAdd == 1) {
-                    chosenNames.add(planetNames[i]);
+                    chosenNames.add(planetName);
                 }
             }
 
@@ -44,8 +45,7 @@ public class KeohaneUnitTest extends junit.framework.TestCase{
 
             // compare the planets now in the S.S. with the chosen names
             for (int i = 0; i < chosenNames.size(); i++) {
-                assertTrue("planet name either missing or shouldn't have been added",
-                        createdPlanets.get(i).getName().equals(chosenNames.get(i)));
+                Assert.assertEquals("planet name either missing or shouldn't have been added", createdPlanets.get(i).getName(), chosenNames.get(i));
             }
         }
 
@@ -53,7 +53,7 @@ public class KeohaneUnitTest extends junit.framework.TestCase{
         ArrayList<String> emptyNameList = new ArrayList<>();
         mySolarSystem = new SolarSystem(0, 0, emptyNameList);
         List<Planet> emptyPlanetList = mySolarSystem.getPlanets();
-        assertTrue("planet list should be empty", emptyPlanetList.size() == 0);
+        Assert.assertEquals("planet list should be empty", 0, emptyPlanetList.size());
     }
 
 }

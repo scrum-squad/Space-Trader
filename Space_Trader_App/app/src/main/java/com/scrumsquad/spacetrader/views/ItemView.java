@@ -34,7 +34,7 @@ public class ItemView extends LinearLayout {
 
     //Initializes ItemView
     private void init() {
-        setOrientation(HORIZONTAL);
+        setOrientation(LinearLayout.HORIZONTAL);
 
         LayoutInflater.from(getContext()).inflate(R.layout.market_item_view, this);
 
@@ -46,7 +46,7 @@ public class ItemView extends LinearLayout {
     }
 
     //This method loads the item view with given good's info
-    public void load( final MarketGoodItem m, final int cost, final int owned, final TextView remainingCredits) {
+    public void load( final MarketGoodItem m, final int cost, int owned, final TextView remainingCredits) {
         String itemName = m.name().toLowerCase();
         itemName = itemName.substring(0, 1).toUpperCase() + itemName.substring(1);
         name.setText(itemName);

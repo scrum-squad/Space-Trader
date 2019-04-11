@@ -14,21 +14,21 @@ public class Ship {
         Ships type = Ships.GNAT;
 //        MarketGoodItem[] list = new MarketGoodItem[type.getCargoCap()];
 //        this.inventory = new ArrayList(Arrays.asList(list));
-        this.inventory = new ArrayList<>();
-        this.itemCap = type.getCargoCap();
-        this.name = type.toString();
-        this.fuel = type.getFuelCap();
-        this.MAX_FUEL = type.getFuelCap();
+        inventory = new ArrayList<>();
+        itemCap = type.getCargoCap();
+        name = type.toString();
+        fuel = type.getFuelCap();
+        MAX_FUEL = type.getFuelCap();
     }
 
     public Ship(Ships type) {
 //        MarketGoodItem[] list = new MarketGoodItem[type.getCargoCap()];
 //        this.inventory = new ArrayList(Arrays.asList(list));
-        this.inventory = new ArrayList<>();
-        this.itemCap = type.getCargoCap();
-        this.name = type.toString();
-        this.fuel = type.getFuelCap();
-        this.MAX_FUEL = type.getFuelCap();
+        inventory = new ArrayList<>();
+        itemCap = type.getCargoCap();
+        name = type.toString();
+        fuel = type.getFuelCap();
+        MAX_FUEL = type.getFuelCap();
     }
 
     public List<MarketGoodItem> getInventory() {
@@ -44,7 +44,7 @@ public class Ship {
 //            }
 //        }
 //        return false;
-        return this.inventory.size() < this.itemCap;
+        return inventory.size() < itemCap;
 
     }
 
@@ -59,7 +59,7 @@ public class Ship {
 //                }
 //            }
             if (bought != null) {
-                this.inventory.add(bought);
+                inventory.add(bought);
             }
         }
     }
@@ -87,7 +87,7 @@ public class Ship {
     }
 
     public int getCurrentFuel() {
-        return this.fuel;
+        return fuel;
     }
 
     public int getMAX_FUEL() {
@@ -95,6 +95,6 @@ public class Ship {
     }
 
     public void subtractUsedFuel(int amountUsed) {
-        this.fuel -= amountUsed;
+        fuel -= amountUsed;
     }
 }

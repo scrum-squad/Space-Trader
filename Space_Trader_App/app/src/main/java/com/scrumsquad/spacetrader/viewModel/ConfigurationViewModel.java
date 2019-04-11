@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class ConfigurationViewModel extends ViewModel {
 
 
-    private final int STARTING_CREDITS = 1000;
     private final Ships STARTING_SHIP = Ships.GNAT;
     private final int SKILL_POINTS = 16;
 
@@ -36,6 +36,7 @@ public class ConfigurationViewModel extends ViewModel {
     }
 
     public void generateCharacter() {
+        int STARTING_CREDITS = 1000;
         Player player1 = new Player(playerName, STARTING_CREDITS, STARTING_SHIP, playerSkills);
         String[] planetNamesArray = {"Acamar", "Adahn", "Aldea", "Andevian", "Antedi", "Balosnee", "Baratas", "Brax", "Bretel", "Calondia",
                 "Campor", "Capelle", "Carzon", "Castor", "Cestus", "Cheron", "Courteney", "Daled", "Damast", "Janus", "Japori"};
@@ -61,14 +62,14 @@ public class ConfigurationViewModel extends ViewModel {
     }
 
     public Difficulty getDiff() {
-        return this.diff;
+        return diff;
     }
 
     public void setName(String name) {
-        this.playerName = name;
+        playerName = name;
     }
 
     public String getName() {
-        return this.playerName;
+        return playerName;
     }
 }

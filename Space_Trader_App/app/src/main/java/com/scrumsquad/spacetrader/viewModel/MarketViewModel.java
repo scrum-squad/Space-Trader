@@ -11,7 +11,7 @@ public class MarketViewModel extends ViewModel {
 
     private final Game game = Game.getGame();
     private final Player player = game.getPlayer();
-    private Planet currentPlanet = game.getCurrentPlanet();
+    private final Planet currentPlanet = game.getCurrentPlanet();
 
     /**
      * Uses the currentPlanet and the item to calculate the real price

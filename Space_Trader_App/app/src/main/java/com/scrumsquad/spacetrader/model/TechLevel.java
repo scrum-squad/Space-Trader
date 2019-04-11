@@ -16,11 +16,12 @@ public enum TechLevel {
 
     private final int level;
 
-    TechLevel(final String name, final int level) {
-        this.formattedName = name;
+    TechLevel(String name, int level) {
+        formattedName = name;
         this.level = level;
     }
 
+    @SuppressWarnings("unused")
     public String getLevelName() { return formattedName; }
 
     /**
@@ -29,7 +30,7 @@ public enum TechLevel {
      */
     public static TechLevel getRandomTechLevel() {
         Random random = new Random();
-        return values()[random.nextInt(values().length)];
+        return TechLevel.values()[random.nextInt(TechLevel.values().length)];
     }
 
     /**

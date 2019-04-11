@@ -6,9 +6,9 @@ public class Planet {
     private final String name;
 
     public Planet() {
-        this.name = "";
-        this.techLevel = TechLevel.getRandomTechLevel();
-        this.resources = Resources.getRandomResource();
+        name = "";
+        techLevel = TechLevel.getRandomTechLevel();
+        resources = Resources.getRandomResource();
     }
 
     /**
@@ -17,8 +17,8 @@ public class Planet {
      */
     public Planet(String name) {
         this.name = name;
-        this.techLevel = TechLevel.getRandomTechLevel();
-        this.resources = Resources.getRandomResource();
+        techLevel = TechLevel.getRandomTechLevel();
+        resources = Resources.getRandomResource();
     }
 
     /**

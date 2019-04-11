@@ -1,5 +1,6 @@
 package com.scrumsquad.spacetrader.model;
 
+@SuppressWarnings("unused")
 public enum Difficulty {
     Beginner ("Beginner"),
     Easy ("Easy"),
@@ -9,7 +10,7 @@ public enum Difficulty {
 
     private final String name;
 
-    Difficulty(final String name) {
+    Difficulty(String name) {
         this.name = name;
     }
 

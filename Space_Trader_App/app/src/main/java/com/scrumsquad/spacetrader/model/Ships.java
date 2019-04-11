@@ -2,6 +2,7 @@ package com.scrumsquad.spacetrader.model;
 
 
 // This should be treated essentially as a resource for the ship class
+@SuppressWarnings("SameParameterValue")
 public enum Ships {
     GNAT  (15, 14);
 
@@ -17,8 +18,8 @@ public enum Ships {
     private final int fuelCap;
 
     Ships() {
-        this.cargoCap = 0;
-        this.fuelCap = 0;
+        cargoCap = 0;
+        fuelCap = 0;
     }
 
     Ships(int cargoCap, int fuelCap) {
@@ -28,7 +29,7 @@ public enum Ships {
 
     //Rewritten name method
     public String toString() {
-        String name = this.name();
+        String name = name();
         name = name.toLowerCase();
         name = name.substring(0, 1).toUpperCase() + name.substring(1);
         return name;

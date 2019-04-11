@@ -6,21 +6,21 @@ public class Player {
     private final String name;
     private int credits;
     private final Ship ship;
-    private List<Skills> skills;
     private SolarSystem currentSystem;
     private Planet currentPlanet;
+    private List<Skills> skills;
 
     public Player() {
-        this.name = "";
-        this.credits = 0;
-        this.ship = new Ship(Ships.GNAT);
+        name = "";
+        credits = 0;
+        ship = new Ship(Ships.GNAT);
     }
 
     public Player(String name, int credits, Ships ship, List<Skills> skill) {
         this.name = name;
         this.credits = credits;
         this.ship = new Ship(ship);
-        this.skills = skill;
+        skills = skill;
     }
 
     public int getCredits() {
@@ -53,5 +53,9 @@ public class Player {
 
     public void setCurrentSystem(SolarSystem currentSystem) {
         this.currentSystem = currentSystem;
+    }
+
+    public List<Skills> getSkills() {
+        return skills;
     }
 }

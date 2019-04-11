@@ -89,7 +89,7 @@ public enum MarketGoodItem {
 
 
     public static List<MarketGoodItem> validItems(TechLevel techLevel) {
-        List<MarketGoodItem> marketInventory = new ArrayList<MarketGoodItem>();
+        List<MarketGoodItem> marketInventory = new ArrayList<>();
         for (MarketGoodItem m : MarketGoodItem.values()) {
             if (techLevel.getLevel() >= m.getTechLvlMostProduction()){
                 marketInventory.add(m);

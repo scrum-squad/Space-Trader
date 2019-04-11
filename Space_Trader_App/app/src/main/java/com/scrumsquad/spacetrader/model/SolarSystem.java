@@ -11,7 +11,7 @@ public class SolarSystem {
     private String name;
 
     public SolarSystem() {
-
+        //used for firebase integration
     }
 
     /**
@@ -23,7 +23,7 @@ public class SolarSystem {
     public SolarSystem(int xCord, int yCord, String planetName) {
         this.xCord = xCord;
         this.yCord = yCord;
-        this.name = planetName;
+        name = planetName;
         List<String> planetNames = new ArrayList<>();
         planetNames.add(planetName);
         makePlanets(planetNames);
@@ -36,10 +36,10 @@ public class SolarSystem {
      * @param planetNames planet names
      */
     public SolarSystem(int xCord, int yCord, List<String> planetNames) {
-        if (planetNames.isEmpty()) {
-            this.name = planetNames.get(0);
+        if (!planetNames.isEmpty()) {
+            name = planetNames.get(0);
         } else {
-            this.name = "Empty";
+            name = "Empty";
         }
         this.xCord = xCord;
         this.yCord = yCord;

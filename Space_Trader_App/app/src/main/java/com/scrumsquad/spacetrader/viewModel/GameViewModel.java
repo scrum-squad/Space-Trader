@@ -23,8 +23,7 @@ public class GameViewModel extends ViewModel {
         double dist = Math.sqrt(Math.pow(target.getxCord() + currentSystem.getxCord(), 2) +
                 Math.pow(target.getyCord() + currentSystem.getyCord(), 2));
 
-        int estimatedDistance = (int) Math.ceil(dist);
-        return estimatedDistance;
+        return (int) Math.ceil(dist);
     }
 
     public List<SolarSystem> getPossibleDestinations() {

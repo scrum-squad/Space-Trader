@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class Game implements Serializable{
     // this is a singleton so here's the only instance
     private static Game game;
@@ -18,29 +19,29 @@ public class Game implements Serializable{
 
     private Game() {
         Ships s = Ships.GNAT;
-        this.player = new Player("", 0, s, null);
-        this.diff = Difficulty.Normal;
+        player = new Player("", 0, s, null);
+        diff = Difficulty.Normal;
         List<String> solarSystemNames = new ArrayList<>();
         solarSystemNames.add("nme");
-        this.makeSolarSystems(solarSystemNames);
+        makeSolarSystems(solarSystemNames);
     }
 
     private Game(Player player1, Difficulty diff1, List<String> solarSystemNames) {
-        this.player = player1;
-        this.diff = diff1;
-        this.makeSolarSystems(solarSystemNames);
+        player = player1;
+        diff = diff1;
+        makeSolarSystems(solarSystemNames);
     }
 
     public static void makeGame(Game g) {
-        game = g;
+        Game.game = g;
     }
 
     // basically just calls the constructor for the instance of Game
     public static void makeGame(Player player1, Difficulty diff1, List<String> solarSystemNames) {
-        game = new Game();
-        game.setPlayer(player1);
-        game.setDifficulty(diff1);
-        game.makeSolarSystems(solarSystemNames);
+        Game.game = new Game();
+        Game.game.setPlayer(player1);
+        Game.game.setDifficulty(diff1);
+        Game.game.makeSolarSystems(solarSystemNames);
     }
 
     private void makeSolarSystems(List<String> solarSystemNames) {
@@ -79,7 +80,7 @@ public class Game implements Serializable{
      * @return Game
      */
     public static Game getGame() {
-        return game;
+        return Game.game;
     }
 
     public Player getPlayer() {
@@ -103,7 +104,7 @@ public class Game implements Serializable{
     }
 
     public void setPlayer(Player player1) {
-        this.player = player1;
+        player = player1;
     }
 
     public void setCoordinates(ArrayList coordinatesUsed) {
@@ -111,7 +112,7 @@ public class Game implements Serializable{
     }
 
     public void setCurrentPlanet(Planet planet) {
-        this.player.setCurrentPlanet(planet);
+        player.setCurrentPlanet(planet);
     }
 
     public void setDifficulty(Difficulty diff) {
@@ -119,6 +120,6 @@ public class Game implements Serializable{
     }
 
     public void setSolarSystems(HashMap<String, SolarSystem> solarSystems1) {
-        this.solarSystems = solarSystems1;
+        solarSystems = solarSystems1;
     }
 }

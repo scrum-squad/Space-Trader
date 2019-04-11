@@ -24,6 +24,6 @@ public enum Resources {
      */
     public static Resources getRandomResource() {
         Random random = new Random();
-        return values()[random.nextInt(values().length)];
+        return Resources.values()[random.nextInt(Resources.values().length)];
     }
 }

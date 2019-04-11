@@ -188,7 +188,7 @@
         android:layout_marginStart="73dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="73dp"
-        android:text="Ready to Begin Your Adevnture?"
+        android:text="Ready to Begin Your Adventure?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.692"
         app:layout_constraintStart_toStartOf="parent"
