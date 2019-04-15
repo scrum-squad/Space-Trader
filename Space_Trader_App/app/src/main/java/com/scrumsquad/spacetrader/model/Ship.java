@@ -86,6 +86,14 @@ public class Ship {
         return null;
     }
 
+    public static ArrayList<Integer> getValidShip(Ships ship) {
+        ArrayList<Integer> output = new ArrayList<>();
+        output.add(ship.getFuelCap());
+        output.add(ship.getCargoCap());
+        return output;
+
+    }
+
     public int getCurrentFuel() {
         return fuel;
     }

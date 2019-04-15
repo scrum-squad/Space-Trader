@@ -94,7 +94,6 @@ public class Game implements Serializable{
     public Planet getCurrentPlanet() {
         return player.getCurrentPlanet();
     }
-
     public ArrayList<String> getCoordinatesUsed() {
         return coordinatesUsed;
     }
@@ -122,4 +121,5 @@ public class Game implements Serializable{
     public void setSolarSystems(HashMap<String, SolarSystem> solarSystems1) {
         solarSystems = solarSystems1;
     }
+
 }

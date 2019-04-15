@@ -4,7 +4,12 @@ package com.scrumsquad.spacetrader.model;
 // This should be treated essentially as a resource for the ship class
 @SuppressWarnings("SameParameterValue")
 public enum Ships {
-    GNAT  (15, 14);
+
+    GNAT  (15, 14),
+    FLEA (8, 20),
+    FIREFLY (20, 17),
+    MOSQUITO (15, 13),
+    BUMBLEBEE(20,15);
 
     //These allow us to build the ship.
     // They should stay inside of this ships class
@@ -21,6 +26,7 @@ public enum Ships {
         cargoCap = 0;
         fuelCap = 0;
     }
+
 
     Ships(int cargoCap, int fuelCap) {
         this.cargoCap = cargoCap;

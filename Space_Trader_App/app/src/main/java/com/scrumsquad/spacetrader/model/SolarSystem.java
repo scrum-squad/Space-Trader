@@ -77,6 +77,7 @@ public class SolarSystem {
         return "(" + xCord + "," + yCord + ")";
     }
 
+
     public String toString() {
         return getName() + " " + getCoordinates();
     }
