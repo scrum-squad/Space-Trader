@@ -19,7 +19,8 @@ public class ConfigurationViewModel extends ViewModel {
     private final Ships STARTING_SHIP = Ships.GNAT;
 
     // Things associated with the player char
-    private final List<Skills> playerSkills = new ArrayList(Arrays.asList(Skills.values()));
+    Skills[] values = Skills.values();
+    private final List<Skills> playerSkills = Arrays.asList(values);
     private String playerName;
     private Game currentGame;
     private Difficulty diff = Difficulty.Normal;

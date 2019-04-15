@@ -107,7 +107,7 @@ public class Game implements Serializable{
         player = player1;
     }
 
-    public void setCoordinates(ArrayList coordinatesUsed) {
+    public void setCoordinates(ArrayList<String> coordinatesUsed) {
         this.coordinatesUsed = coordinatesUsed;
     }
 
