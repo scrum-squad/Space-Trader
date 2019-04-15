@@ -17,10 +17,10 @@ public class ConfigurationViewModel extends ViewModel {
 
 
     private final Ships STARTING_SHIP = Ships.GNAT;
-    private final int SKILL_POINTS = 16;
 
     // Things associated with the player char
-    private final List<Skills> playerSkills = new ArrayList(Arrays.asList(Skills.values()));
+    Skills[] values = Skills.values();
+    private final List<Skills> playerSkills = Arrays.asList(values);
     private String playerName;
     private Game currentGame;
     private Difficulty diff = Difficulty.Normal;
@@ -45,6 +45,7 @@ public class ConfigurationViewModel extends ViewModel {
     }
 
     public int remainingSkillPoints() {
+        int SKILL_POINTS = 16;
         int usedSkills = 0;
         for (Skills skill: playerSkills) {
             usedSkills += skill.getLevel();
