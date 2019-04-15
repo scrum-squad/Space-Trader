@@ -33,21 +33,15 @@ public class ConfigurationActivity extends AppCompatActivity{
     private Difficulty difLevel;
 
     private TextView remainingSkillPoints;
-    private TextView pilotLabel;
-    private TextView traderLabel;
-    private TextView engineerLabel;
-    private TextView fighterLabel;
     private EditText playerName;
     private Button startGame;
     private Spinner difSpinner;
 
     // variables associated with plus buttons
     private Button[] plusButtons;
-    private final int NUM_PLUS_BUTTONS = 4;
 
     //
     private Button[] minusButtons;
-    private final int NUM_MINUS_BUTTONS = 4;
 
     // these are the key values for passing player data and difficulty data at the end
     private final String PLAYER_KEY = "Player";
@@ -148,6 +142,8 @@ public class ConfigurationActivity extends AppCompatActivity{
     }
 
     private void createButtonArray() {
+        int NUM_PLUS_BUTTONS = 4;
+        int NUM_MINUS_BUTTONS = 4;
         plusButtons = new Button[NUM_PLUS_BUTTONS];
         // I could add the buttons a different way but this is easiest for me to visualize
 
@@ -173,6 +169,10 @@ public class ConfigurationActivity extends AppCompatActivity{
     private void updateSkillLabels() {
         // This can definitely be more modular if we can figure out how to set these dang buttons
         // Might be worth looking more into resources
+        TextView pilotLabel;
+        TextView traderLabel;
+        TextView engineerLabel;
+        TextView fighterLabel;
         pilotLabel = findViewById(R.id.player_display_pilot);
         traderLabel = findViewById(R.id.player_display_trader);
         engineerLabel = findViewById(R.id.player_display_engineer);
