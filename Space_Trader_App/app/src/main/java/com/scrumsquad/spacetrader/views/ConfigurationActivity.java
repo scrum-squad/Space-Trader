@@ -96,7 +96,6 @@ public class ConfigurationActivity extends AppCompatActivity{
                 // THIS CREATES THE PLAYER AND THE UNIVERSE
                 viewModel.generateCharacter();
 
-                // saves game to firebase
                 Game game = Game.getGame();
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("User");
