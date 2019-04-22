@@ -1,15 +1,17 @@
 package com.scrumsquad.spacetrader.model;
 
 
+import java.security.PrivilegedAction;
+
 // This should be treated essentially as a resource for the ship class
 @SuppressWarnings("SameParameterValue")
 public enum Ships {
 
-    GNAT  (15, 14),
-    FLEA (8, 20),
-    FIREFLY (20, 17),
-    MOSQUITO (15, 13),
-    BUMBLEBEE(20,15);
+    GNAT  (15, 14, Weapon.WATERGUN),
+    FLEA (8, 20, Weapon.WATERGUN),
+    FIREFLY (20, 17, Weapon.WATERGUN),
+    MOSQUITO (15, 13, Weapon.WATERGUN),
+    BUMBLEBEE(20,15, Weapon.WATERGUN);
 
     //These allow us to build the ship.
     // They should stay inside of this ships class
@@ -21,6 +23,7 @@ public enum Ships {
     private int gadgetCap;
     private int crewCap;
     private final int fuelCap;
+    private Weapon weapon;
 
     Ships() {
         cargoCap = 0;
@@ -28,9 +31,10 @@ public enum Ships {
     }
 
 
-    Ships(int cargoCap, int fuelCap) {
+    Ships(int cargoCap, int fuelCap, Weapon weapon) {
         this.cargoCap = cargoCap;
         this.fuelCap = fuelCap;
+        this.weapon = weapon;
     }
 
     //Rewritten name method
@@ -52,4 +56,11 @@ public enum Ships {
         return fuelCap;
     }
 
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
 }

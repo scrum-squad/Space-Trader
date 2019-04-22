@@ -9,6 +9,7 @@ public class Ship {
     private int fuel;
     private final int MAX_FUEL;
     private final int itemCap;
+    private Weapon weapon;
 
     public Ship() {
         Ships type = Ships.GNAT;
@@ -19,6 +20,7 @@ public class Ship {
         name = type.toString();
         fuel = type.getFuelCap();
         MAX_FUEL = type.getFuelCap();
+        weapon = type.getWeapon();
     }
 
     public Ship(Ships type) {
@@ -104,5 +106,9 @@ public class Ship {
 
     public void subtractUsedFuel(int amountUsed) {
         fuel -= amountUsed;
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
     }
 }
