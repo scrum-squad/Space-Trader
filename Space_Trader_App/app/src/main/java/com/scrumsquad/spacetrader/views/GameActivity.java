@@ -1,5 +1,7 @@
 package com.scrumsquad.spacetrader.views;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.scrumsquad.spacetrader.R;
 import com.scrumsquad.spacetrader.model.Game;
+import com.scrumsquad.spacetrader.model.Pirate;
 import com.scrumsquad.spacetrader.model.Planet;
 import com.scrumsquad.spacetrader.model.SolarSystem;
 import com.scrumsquad.spacetrader.viewModel.GameViewModel;
@@ -70,13 +73,24 @@ public class GameActivity extends AppCompatActivity {
                 SolarSystem destination = (SolarSystem) travelLocations.getSelectedItem();
                 viewModel.travelToDestination(destination);
                 Random rand = new Random();
-                if (rand.nextInt(3) == 2) {
+                int ran = rand.nextInt(5);
+                if (ran == 2) {
                     Toast notif;
                     CharSequence text = "You left the door open and a snake snuck on to the ship and you sold it for 100 credits";
                     notif = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
                     viewModel.getPlayer().setCredits(viewModel.getPlayer().getCredits() + 100);
                     notif.show();
                 }
+                if (ran == 0) {
+                    pirateAttack(new Pirate());
+                }
+                if (ran == 1) {
+                    mercAttack();
+                }
+                if (ran == 5) {
+                    popoAttack();
+                }
+
                 setup(destination);
             }
         });
@@ -114,5 +128,103 @@ public class GameActivity extends AppCompatActivity {
                 viewModel.getPossibleDestinations());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         travelLocations.setAdapter(adapter);
+    }
+
+    public void pirateAttack(final Pirate pirate) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Pirates have found you! Would you like to run or fight?")
+                .setTitle("OH NO! PIRATES");
+
+        builder.setPositiveButton("Fight!", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Toast notif;
+                CharSequence text = "Pirate defeated with your weapon!";
+                notif = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+                notif.show();
+            }
+        });
+        builder.setNegativeButton("Run!", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Toast notif;
+                CharSequence text = "You ran away and lost some credit on the way.";
+                notif = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+                viewModel.getPlayer().setCredits(viewModel.getPlayer().getCredits() >= 10 ? viewModel.getPlayer().getCredits() - 10 : 0);
+                notif.show();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public void mercAttack() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Mercenaries have found you! Would you like to try running or pay?")
+                .setTitle("OH NO! MERCEMARIES");
+
+        builder.setPositiveButton("Pay!", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Toast notif;
+                CharSequence text = "Mercenaries paid off!";
+                viewModel.getPlayer().setCredits(viewModel.getPlayer().getCredits() >= 20 ? viewModel.getPlayer().getCredits() - 20 : 0);
+                notif = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+                notif.show();
+            }
+        });
+        builder.setNegativeButton("Run!", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Toast notif;
+                Random random = new Random();
+                if (random.nextInt(4) == 0) {
+                    CharSequence text = "You tried running away and lost some credit on the way, and could NOT get away, try again.";
+                    notif = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
+                    notif.show();
+                    mercAttack();
+                } else {
+                    CharSequence text = "You tried running away and lost some credit on the way.";
+                    notif = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+                    viewModel.getPlayer().setCredits(viewModel.getPlayer().getCredits() >= 10 ? viewModel.getPlayer().getCredits() - 10 : 0);
+                    notif.show();
+                }
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+    public void popoAttack() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("The Police have found you speeding!")
+                .setTitle("OH NO! THE POPO");
+
+        builder.setPositiveButton("Pay!", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Toast notif;
+                CharSequence text = "Fines paid off!";
+                viewModel.getPlayer().setCredits(viewModel.getPlayer().getCredits() >= 20 ? viewModel.getPlayer().getCredits() - 20 : 0);
+                notif = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+                notif.show();
+            }
+        });
+        builder.setNegativeButton("Bribe!", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Toast notif;
+                Random random = new Random();
+                if (random.nextInt(4) == 0) {
+                    CharSequence text = "You tried bribing the police away, and could NOT, try again.";
+                    notif = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
+                    notif.show();
+                    popoAttack();
+                } else {
+                    CharSequence text = "You tried running away and lost some credit on the way.";
+                    notif = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+                    viewModel.getPlayer().setCredits(viewModel.getPlayer().getCredits() >= 10 ? viewModel.getPlayer().getCredits() - 10 : 0);
+                    notif.show();
+                }
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

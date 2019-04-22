@@ -3,11 +3,13 @@ package com.scrumsquad.spacetrader.viewModel;
 import android.arch.lifecycle.ViewModel;
 
 import com.scrumsquad.spacetrader.model.Game;
+import com.scrumsquad.spacetrader.model.Pirate;
 import com.scrumsquad.spacetrader.model.Player;
 import com.scrumsquad.spacetrader.model.SolarSystem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameViewModel extends ViewModel {
 
@@ -49,6 +51,7 @@ public class GameViewModel extends ViewModel {
         int dist = distanceTo(destination);
         int fuelUsed = dist / distPerFuel;
 
+
         // Update current system and planet
         // TODO: Select from varying planets, current selects default at index = 0
         player.setCurrentSystem(destination);
@@ -82,4 +85,5 @@ public class GameViewModel extends ViewModel {
     public Player getPlayer() {
         return player;
     }
+
 }
